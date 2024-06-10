@@ -1,4 +1,9 @@
 {
+  "env": {
+    "browser": true, // Enables browser global variables
+    "es2021": true, // Sets the ECMAScript syntax to version 2021
+    "node": true
+  },
   "extends": ["airbnb", "prettier", "plugin:node/recommended"],
   "plugins": ["prettier"],
   "rules": {
@@ -18,6 +23,7 @@
       "error",
       { "argsIgnorePattern": "req|res|next|val|err" }
     ],
-    "singleQuote": "true"
+    "singleQuote": "off",
+    "no-plusplus": "off"
   }
 }

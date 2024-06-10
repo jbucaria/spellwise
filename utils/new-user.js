@@ -1,7 +1,7 @@
 const newUserSubmit = document.getElementById('submit-new-user');
-let loginMessage = document.getElementById('validationMessage');
-let form = document.getElementById('form');
-let messageBox = document.getElementById('message');
+const loginMessage = document.getElementById('validationMessage');
+// const form = document.getElementById('form');
+const messageBox = document.getElementById('message');
 
 function updateValidation(message, className) {
   messageBox.classList.add(className);
@@ -34,7 +34,8 @@ newUserSubmit.addEventListener('click', (event) => {
   let users = localStorage.getItem('users');
   users = users ? JSON.parse(users) : [];
 
-  const index = users.findIndex((users) => users.email === emailInput);
+  //Chanded user form users
+  const index = users.findIndex((user) => user.email === emailInput);
   if (index === -1) {
     console.log(users.email);
     users.push(newUser);

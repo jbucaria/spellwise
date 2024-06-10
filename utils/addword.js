@@ -20,7 +20,7 @@ addBtn.addEventListener('click', (event) => {
 
   const addWordEl = document.getElementById('add-word').value;
   const index = spellingWords.findIndex(
-    (spellingWords) => spellingWords === addWordEl,
+    (spellingWord) => spellingWord === addWordEl,
   );
 
   if (addWordEl === '') {

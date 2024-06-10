@@ -2,10 +2,10 @@ const submitBtn = document.getElementById('submit');
 
 submitBtn.addEventListener('click', (event) => {
   event.preventDefault();
-  let messageEl = document.getElementById('message');
-  let loginMessage = document.getElementById('login-message');
-  let passwordInput = document.getElementById('password').value;
-  let userInput = document.getElementById('username').value;
+  const messageEl = document.getElementById('message');
+  const loginMessage = document.getElementById('login-message');
+  const passwordInput = document.getElementById('password').value;
+  const userInput = document.getElementById('username').value;
   let found = false;
   const usersStr = localStorage.getItem('users');
   const users = JSON.parse(usersStr);

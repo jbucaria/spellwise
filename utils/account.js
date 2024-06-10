@@ -8,7 +8,7 @@ const users = JSON.parse(usersStr);
 
 deleteBtn.addEventListener('click', () => {
   const userToDelete = document.getElementById('username-to-delete').value;
-  const index = users.findIndex((users) => users.email === userToDelete);
+  const index = users.findIndex((user) => user.email === userToDelete);
 
   if (index !== -1) {
     users.splice(index, 1);

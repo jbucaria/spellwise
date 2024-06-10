@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/styles/normalize.css" />
+    <link rel="stylesheet" href="/styles/styles.css" />
+
+    <script src="https://kit.fontawesome.com/6254b5bb38.js" crossorigin="anonymous"></script>
+
+    <title>Spell Wise</title>
+  </head>
+  <body>
+    <ul>
+      <li><a href="account.html">Settings</a></li>
+      <li><a href="add-word.html">Add Words</a></li>
+      <li><a href="submit-word.html">Spell Words</a></li>
+      <li><a href="home.html">LogOut</a></li>
+    </ul>
+
+    <div class="butt">
+      <form id="form1" class="form">
+        <div class="input-group">
+          <span class="input"></span>
+          <input id="username-to-delete" class="form-control" name="email" placeholder="Username" autocomplete="username" required />
+        </div>
+
+        <div class="submit-group">
+          <button id="delete-btn" type="button" class="button button1">Delete User</button>
+        </div>
+      </form>
+      <div class="butt">
+        <form id="form2" class="form">
+          <div class="submit-group">
+            <button id="delete-word" type="button" class="button button2">Delete Words</button>
+          </div>
+          <div class="submit-group">
+            <button id="clear-word" type="button" class="button button3">Clear Correct</button>
+          </div>
+        </form>
+      </div>
+      <div id="login-message" class=""></div>
+    </div>
+
+    <script type="module" src="/utils/account.js"></script>
+  </body>
+</html>

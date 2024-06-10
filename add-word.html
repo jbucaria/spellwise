@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/normalize.css" />
+    <link rel="stylesheet" href="/styles/styles.css" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <ul>
+      <li><a href="account.html">Settings</a></li>
+      <li><a href="add-word.html">Add Words</a></li>
+      <li><a href="submit-word.html">Spell Words</a></li>
+      <li><a href="home.html">Log Out</a></li>
+    </ul>
+
+    <div class="inputbox">
+      <form>
+        <input type="text" id="add-word" placeholder="new word.." />
+        <div class="btn">
+          <button type="button" id="add-btn" class="button button1">
+            Add Word
+          </button>
+          <button type="button" id="display-btn" class="button button1">
+            Display Words
+          </button>
+        </div>
+      </form>
+    </div>
+    <div id="message-1">
+      <p id="validationMessage"></p>
+    </div>
+    <div id="word-box">
+      <div id="word-container" class="word-container"></div>
+    </div>
+
+    <script src="/utils/addword.js" type="module"></script>
+  </body>
+</html>

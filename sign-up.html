@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/styles/normalize.css" />
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <script src="https://kit.fontawesome.com/6254b5bb38.js" crossorigin="anonymous"></script>
+
+    <title>My Project</title>
+  </head>
+  <ul>
+    <li><a href="home.html">Home</a></li>
+  </ul>
+  <body>
+    <div id="logoBox">
+      <div id="logo">
+        <img class="logo" src="/assets/logo3.png" alt="" />
+      </div>
+    </div>
+    <div class="butt">
+      <form id="form" class="form">
+        <div class="input-group">
+          <span class="input"></span>
+          <input id="email" type="email" class="form-control" name="email" placeholder="Email" />
+        </div>
+
+        <div class="input-group">
+          <span class="input"></span>
+          <input id="password" type="password" class="form-control" name="password" placeholder="Password" autocomplete="new-password" />
+        </div>
+        <div class="submit-group">
+          <span class="input"></span>
+          <button id="submit-new-user" type="submit" class="button button3">Create Account</button>
+        </div>
+      </form>
+      <div id="message">
+        <p id="validationMessage"></p>
+      </div>
+    </div>
+
+    <main id="main"></main>
+
+    <script type="module" src="/utils/new-user.js"></script>
+  </body>
+</html>

@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 const wordSchema = new mongoose.Schema({
-  id: {
+  word: {
     type: String,
     required: true,
     unique: true,
   },
-  shortdef: {
+  def: {
     type: String,
   },
 });

@@ -1,27 +1,41 @@
 const WordInput = require('../models/wordsModel');
 
-exports.getAllWords = (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    requested: req.requestTime,
-    // data: {
-    //   tours,
-    // },
-  });
+exports.getAllWords = async (req, res) => {
+  try {
+    const words = await WordInput.find();
+
+    res.status(200).json({
+      status: 'success',
+      results: words.length,
+      data: {
+        words,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err,
+    });
+  }
 };
 
-exports.getWord = (req, res) => {
-  console.log(req.params);
-  // const id = req.params.id * 1;
+exports.getWord = async (req, res) => {
+  try {
+    const word = await WordInput.findById(req.params.id);
 
-  // const tour = tours.find((el) => el.id === id);
-
-  // res.status(200).json({
-  //   status: 'success',
-  //   data: {
-  //     tour,
-  //   },
-  // });
+    res.status(200).json({
+      status: 'success',
+      results: word.length,
+      data: {
+        word,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err,
+    });
+  }
 };
 
 exports.createWord = async (req, res) => {
@@ -42,18 +56,39 @@ exports.createWord = async (req, res) => {
   }
 };
 
-exports.updateWord = (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    data: {
-      tour: '<updated tour>',
-    },
-  });
+exports.updateWord = async (req, res) => {
+  try {
+    const word = await WordInput.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        word,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err,
+    });
+  }
 };
 
-exports.deleteWord = (req, res) => {
-  res.status(204).json({
-    status: 'success',
-    data: null,
-  });
+exports.deleteWord = async (req, res) => {
+  try {
+    await WordInput.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({
+      status: 'success',
+      data: null,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err,
+    });
+  }
 };

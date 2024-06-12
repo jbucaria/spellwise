@@ -1,15 +1,5 @@
 const WordInput = require('../models/wordsModel');
 
-exports.checkBody = (req, res, next) => {
-  if (!req.body.id || !req.body.shortdef) {
-    return res.status(404).json({
-      status: 'fail',
-      message: 'Missing name or price',
-    });
-  }
-  next();
-};
-
 exports.getAllWords = (req, res) => {
   res.status(200).json({
     status: 'success',
@@ -34,13 +24,22 @@ exports.getWord = (req, res) => {
   // });
 };
 
-exports.createWord = (req, res) => {
-  res.status(201).json({
-    status: 'success',
-    // data: {
-    //   tour: newTour,
-    // },
-  });
+exports.createWord = async (req, res) => {
+  try {
+    const newWord = await WordInput.create(req.body);
+
+    res.status(201).json({
+      status: 'success',
+      data: {
+        word: newWord,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: err,
+    });
+  }
 };
 
 exports.updateWord = (req, res) => {

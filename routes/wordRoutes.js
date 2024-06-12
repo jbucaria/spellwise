@@ -8,7 +8,7 @@ const router = express.Router();
 router
   .route('/')
   .get(wordController.getAllWords)
-  .post(wordController.checkBody, wordController.createWord);
+  .post(wordController.createWord);
 
 router
   .route('/:id')

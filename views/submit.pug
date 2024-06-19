@@ -1,0 +1,76 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    script(src="https://kit.fontawesome.com/6254b5bb38.js" crossorigin="anonymous")
+    link(rel="stylesheet" href="./../styles/normalize.css")
+    link(rel="stylesheet" href="./../styles/styles.css")
+    title Spell Wise
+  body
+    ul
+      li
+        a(href="account.html") Settings
+      li
+        a(href="add-word.html") Add Words
+      li
+        a(href="submit-word.html") Spell Words
+      li
+        a(href="home.html") Log Out
+    #message-2
+      p#validationMessage
+    .inputbox
+      input(type="text" id="spell-word" placeholder="Spell Word" readonly)
+      .btn
+        button#say-btn.button.button1 Say Word
+        button#check-btn.button.button3 Check
+      .hint
+        button#login-btn.button.button2 Hint
+        button#next-btn.button.button2 Skip
+    .keyboard
+      .row
+        .key 1
+        .key 2
+        .key 3
+        .key 4
+        .key 5
+        .key 6
+        .key 7
+        .key 8
+        .key 9
+        .key 0
+        .key.delete 
+          i.fa-solid.fa-delete-left
+      .row
+        .key q
+        .key w
+        .key e
+        .key r
+        .key t
+        .key y
+        .key u
+        .key i
+        .key o
+        .key p
+      .row
+        .key.capslock CapsLock
+        .key a
+        .key s
+        .key d
+        .key f
+        .key g
+        .key h
+        .key j
+        .key k
+        .key l
+      .row.last
+        .key z
+        .key x
+        .key c
+        .key v
+        .key b
+        .key n
+        .key m
+      .row
+        .key.space
+    script(src="./../utils/submit.js" type="module")

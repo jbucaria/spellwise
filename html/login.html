@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="./../styles/normalize.css" />
-    <link rel="stylesheet" href="./../styles/styles.css" />
+    <link rel="stylesheet" href="../styles/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="../styles/styles.css" />
     <script
       src="https://kit.fontawesome.com/6254b5bb38.js"
       crossorigin="anonymous"
@@ -17,7 +17,7 @@
   <body>
     <div id="logoBox">
       <div id="logo">
-        <img class="logo" src="/assets/logo3.png" alt="" />
+        <img class="logo" src="./../assets/logo3.png" alt="" />
       </div>
     </div>
 
@@ -26,7 +26,7 @@
         <div class="input-group">
           <span class="input"></span>
           <input
-            id="username"
+            id="email"
             class="form-control"
             name="email"
             placeholder="Email"
@@ -38,18 +38,19 @@
           <span class="input"></span>
           <input
             id="password"
-            type="password"
             class="form-control"
-            name="password"
+            type="password"
+            name="email"
             placeholder="Password"
             autocomplete="current-password"
             required
           />
         </div>
+
         <div class="submit-group">
           <span class="input"></span>
           <button id="submit" type="submit" class="button button3">
-            Login
+            Submit
           </button>
         </div>
       </form>
@@ -59,6 +60,6 @@
     </div>
     <main id="main"></main>
 
-    <script type="module" src="/utils/login.js"></script>
+    <script type="module" src="./../utils/login.js"></script>
   </body>
 </html>

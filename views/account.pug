@@ -1,0 +1,34 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" href="./../styles/normalize.css")
+    link(rel="stylesheet" href="./../styles/styles.css")
+    script(src="https://kit.fontawesome.com/6254b5bb38.js" crossorigin="anonymous")
+    title Spell Wise
+  body
+    ul
+      li
+        a(href="account.html") Settings
+      li
+        a(href="add-word.html") Add Words
+      li
+        a(href="submit-word.html") Spell Words
+      li
+        a(href="home.html") LogOut
+    .butt
+      form#form1.form
+        .input-group
+          span.input
+          input#username-to-delete.form-control(name="email" placeholder="Username" autocomplete="username" required)
+        .submit-group
+          button#delete-btn.button.button1(type="button") Delete User
+      .butt
+        form#form2.form
+          .submit-group
+            button#delete-word.button.button2(type="button") Delete Words
+          .submit-group
+            button#clear-word.button.button3(type="button") Clear Correct
+      #login-message
+    script(type="module" src="./../utils/account.js")

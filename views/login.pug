@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" href="styles/normalize.css")
+    link(rel="stylesheet" type="text/css" href="styles/styles.css")
+    script(src="https://kit.fontawesome.com/6254b5bb38.js" crossorigin="anonymous")
+    title Spell Wise
+  body
+    h1= word
+    h2= def
+    #logoBox
+      #logo
+        img.logo(src="./../assets/logo3.png" alt="")
+    .butt
+      form#form.form
+        .input-group
+          span.input
+          input#email.form-control(name="email" placeholder="Email" autocomplete="username" required)
+        .input-group
+          span.input
+          input#password.form-control(type="password" name="email" placeholder="Password" autocomplete="current-password" required)
+        .submit-group
+          span.input
+          button#submit.button.button3(type="submit") Submit
+    #message
+      #login-message
+    main#main
+    script(type="module" src="./../utils/login.js")

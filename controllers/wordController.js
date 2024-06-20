@@ -1,94 +1,60 @@
 const WordInput = require('../models/wordsModel');
+const catchAsync = require('../public/utils/catchAsync');
 
-exports.getAllWords = async (req, res) => {
-  try {
-    const words = await WordInput.find();
+exports.getAllWords = catchAsync(async (req, res, next) => {
+  const words = await WordInput.find();
 
-    res.status(200).json({
-      status: 'success',
-      results: words.length,
-      data: {
-        words,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: 'fail',
-      message: err,
-    });
-  }
-};
+  res.status(200).json({
+    status: 'success',
+    results: words.length,
+    data: {
+      words,
+    },
+  });
+});
 
-exports.getWord = async (req, res) => {
-  try {
-    const word = await WordInput.findById(req.params.id);
+exports.getWord = catchAsync(async (req, res, next) => {
+  const word = await WordInput.findById(req.params.id);
 
-    res.status(200).json({
-      status: 'success',
-      results: word.length,
-      data: {
-        word,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: 'fail',
-      message: err,
-    });
-  }
-};
+  res.status(200).json({
+    status: 'success',
+    results: word.length,
+    data: {
+      word,
+    },
+  });
+});
 
-exports.createWord = async (req, res) => {
-  try {
-    const newWord = await WordInput.create(req.body);
+exports.createWord = catchAsync(async (req, res, next) => {
+  const newWord = await WordInput.create(req.body);
 
-    res.status(201).json({
-      status: 'success',
-      data: {
-        word: newWord,
-      },
-    });
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: err,
-    });
-  }
-};
+  res.status(201).json({
+    status: 'success',
+    data: {
+      word: newWord,
+    },
+  });
+});
 
-exports.updateWord = async (req, res) => {
-  try {
-    const word = await WordInput.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
+exports.updateWord = catchAsync(async (req, res, next) => {
+  const word = await WordInput.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
 
-    res.status(200).json({
-      status: 'success',
-      data: {
-        word,
-      },
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: 'fail',
-      message: err,
-    });
-  }
-};
+  res.status(200).json({
+    status: 'success',
+    data: {
+      word,
+    },
+  });
+});
 
-exports.deleteWord = async (req, res) => {
-  try {
-    await WordInput.findByIdAndDelete(req.params.id);
+exports.deleteWord = catchAsync(async (req, res, next) => {
+  await WordInput.findByIdAndDelete(req.params.id);
 
-    res.status(200).json({
-      status: 'success',
-      data: null,
-    });
-  } catch (err) {
-    res.status(404).json({
-      status: 'fail',
-      message: err,
-    });
-  }
-};
+  res.status(200).json({
+    status: 'success',
+    data: null,
+  });
+});

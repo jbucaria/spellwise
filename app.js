@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
@@ -17,6 +19,11 @@ app.set('views', path.join(__dirname, 'views'));
 //HTTP request logger. Formats the log output to be concise and colorful
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
+  console.log('Running in development mode');
+} else if (process.env.NODE_ENV === 'production') {
+  console.log('running in production mode');
+} else {
+  console.log('Running in unkown mode');
 }
 
 //Parses the JSON payload and makes it available in req.body

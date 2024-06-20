@@ -21,8 +21,10 @@ const clientOptions = {
 };
 
 mongoose.connect(DB, clientOptions).then(() => {
-  console.log('you are connected to mongoDB');
+  console.log('MongoDB connection successful!');
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {});
+app.listen(port, () => {
+  console.log(`App running on port ${port}`);
+});

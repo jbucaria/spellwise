@@ -18,10 +18,16 @@ html(lang="en")
       form#form.form
         .input-group
           span.input
+          input#email.form-control(name="username" placeholder="Username")
+        .input-group
+          span.input
           input#email.form-control(type="email" name="email" placeholder="Email")
         .input-group
           span.input
           input#password.form-control(type="password" name="password" placeholder="Password" autocomplete="new-password")
+        .input-group
+          span.input
+          input#password.form-control(type="password" name="password" placeholder="Confirm Password" autocomplete="new-password")
         .submit-group
           span.input
           button#submit-new-user.button.button3(type="submit") Create Account

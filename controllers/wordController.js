@@ -1,6 +1,6 @@
 const WordInput = require('../models/wordsModel');
-const AppError = require('../public/utils/appError');
-const catchAsync = require('../public/utils/catchAsync');
+const AppError = require('../utils/appError');
+const catchAsync = require('../utils/catchAsync');
 
 exports.getAllWords = catchAsync(async (req, res, next) => {
   const words = await WordInput.find();

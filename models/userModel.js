@@ -3,7 +3,7 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
     required: [true, 'must provide a name'],
     unique: true,
@@ -47,13 +47,23 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre('save', async function (next) {
+  //Only run this fuction uf passwoed was actually modified
   if (!this.isModified('password')) return next();
 
+  //Hash the passwoed with cost of 121
   this.password = await bcrypt.hash(this.password, 12);
 
+  // Delete passwordConfirm field
   this.passwordConfirm = undefined;
   next();
 });
+
+userSchema.methods.correctPassword = async function (
+  candidatePassword,
+  userPassword,
+) {
+  return await bcrypt.compare(candidatePassword, userPassword);
+};
 
 const User = mongoose.model('User', userSchema);
 

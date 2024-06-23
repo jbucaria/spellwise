@@ -1,11 +1,8 @@
-exports.getLogin =
-  ('/login',
-  (req, res) => {
-    res.status(200).render('login', {
-      word: 'This is My Word',
-      def: ' This is the definition',
-    });
+exports.getLogin = (req, res) => {
+  res.status(200).render('login', {
+    title: 'Log into your account',
   });
+};
 
 exports.addWord =
   ('/add',
@@ -28,8 +25,10 @@ exports.home =
   (req, res) => {
     res.status(200).render('home');
   });
-exports.signIn =
+exports.signUp =
   ('/signin',
   (req, res) => {
-    res.status(200).render('sign-up');
+    res.status(200).render('sign-up', {
+      title: 'Create account',
+    });
   });

@@ -8,6 +8,6 @@ router.get('/add', viewController.addWord);
 router.get('/submit', viewController.submitWord);
 router.get('/account', viewController.account);
 router.get('/home', viewController.home);
-router.get('/signin', viewController.signIn);
+router.get('/signup', viewController.signUp);
 
 module.exports = router;

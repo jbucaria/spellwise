@@ -1,5 +1,6 @@
 const express = require('express');
 const wordController = require('../controllers/wordController');
+const authController = require('../controllers/authController');
 
 const router = express.Router();
 
@@ -7,7 +8,7 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(wordController.getAllWords)
+  .get(authController.protect, wordController.getAllWords)
   .post(wordController.createWord);
 
 router

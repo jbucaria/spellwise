@@ -129,7 +129,7 @@ function handleTyping(text) {
 }
 
 // Add event listener for physical keyboard typing
-document.addEventListener('keydown', (event) => {
+document.addEventListener('keydown', event => {
   const { key } = event;
 
   // Set the flag for keyboard input

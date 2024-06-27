@@ -4,7 +4,7 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 
-// router.param('id', wordController.checkId);
+router.get('/addword', wordController.addWord);
 
 router
   .route('/')

@@ -1,6 +1,11 @@
+const { writeNewWord } = require('../utils/merrianWebsterApi');
 const WordInput = require('../models/wordsModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
+
+exports.addWord = catchAsync(async (req, res, next) => {
+  await writeNewWord(req, res);
+});
 
 exports.getAllWords = catchAsync(async (req, res, next) => {
   const words = await WordInput.find();

@@ -1,12 +1,17 @@
 const mongoose = require('mongoose');
 
 const wordSchema = new mongoose.Schema({
-  word: String,
+  word: {
+    type: String,
+    requried: [true, 'Must provide a word'],
+  },
   fl: {
     type: String,
+    required: [true, 'Must provide Part of Speech'],
   },
   definition: {
     type: String,
+    required: [true, 'Must provide a definition'],
   },
 });
 

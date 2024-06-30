@@ -1,11 +1,6 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet" href="styles/normalize.css")
-    link(rel="stylesheet" href="styles/styles.css")
-    title Document
+extends base
+
+block content
   body
     ul
       li
@@ -26,4 +21,4 @@ html(lang="en")
       p#validationMessage
     #word-box
       #word-container.word-container
-    script(src="./../utils/addword.js" type="module")
+    script(src="/js/addword.js")

@@ -4,6 +4,7 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const helmet = require('helmet');
 
 const AppError = require('./utils/appError');
 const globlaErrorHandler = require('./controllers/errorController');
@@ -35,6 +36,9 @@ app.use(cookieParser());
 //Serves static files from the specified directory.
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Set security headers
+// app.use(helmet());
+
 //Middleware - logs the duration of the query,
 app.use((req, res, next) => {
   const start = Date.now();
@@ -42,7 +46,13 @@ app.use((req, res, next) => {
     const duration = Date.now() - start;
     console.log(`Query took ${duration} milliseconds`);
   });
-  // console.log(req.headers);
+  next();
+});
+
+//Testing midleware
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  console.log(req.cookies);
   next();
 });
 

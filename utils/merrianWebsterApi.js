@@ -1,4 +1,3 @@
-const fs = require('fs');
 const axios = require('axios');
 const dotenv = require('dotenv');
 const AppError = require('./appError');
@@ -10,7 +9,7 @@ const apiKey = process.env.API_KEY;
 
 exports.writeNewWord = async (req, res) => {
   try {
-    const newData = 'roof';
+    const newData = 'close';
 
     const apiResponse = await axios.get(
       `https://www.dictionaryapi.com/api/v3/references/sd2/json/${newData}?key=${apiKey}`,
@@ -38,15 +37,9 @@ exports.writeNewWord = async (req, res) => {
           },
         });
       }
-      return res.status(404).json({
-        status: 'fail',
-        message: 'Word not found in the API',
-      });
+      throw new AppError('Word Not Found in API');
     }
-    return res.status(500).json({
-      status: 'error',
-      message: 'Invalid response from the API',
-    });
+    throw new AppError('Invalid response from API');
   } catch (err) {
     res.status(500).json({
       status: 'error',

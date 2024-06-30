@@ -10,4 +10,4 @@ function updateValidation(message, className) {
   validationEl.textContent = message;
 }
 
-addBtn.addEventListener('click', event => {});
+addBtn.addEventListener('click', () => {});

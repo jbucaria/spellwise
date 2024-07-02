@@ -4,7 +4,6 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const helmet = require('helmet');
 
 const AppError = require('./utils/appError');
 const globlaErrorHandler = require('./controllers/errorController');
@@ -52,7 +51,7 @@ app.use((req, res, next) => {
 //Testing midleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
-  // console.log(req.cookies);
+  console.log(req.cookies);
   next();
 });
 

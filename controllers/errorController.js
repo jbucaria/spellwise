@@ -7,10 +7,11 @@ const handleCastErrorDB = err => {
 };
 
 const handleDuplicateFieldsDB = err => {
-  const value = Object.values(err.keyValue)[0];
-  console.log(value);
+  const { keyValue } = err;
+  console.log(keyValue);
+  const message = `Duplicate: ${Object.keys(keyValue)} - ${Object.values(keyValue)}.`;
 
-  const message = `Duplicate Word: ${value}. Please use another word!`;
+  // Assuming AppError is defined and used for custom error handling
   return new AppError(message, 400);
 };
 

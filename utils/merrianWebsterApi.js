@@ -9,7 +9,7 @@ const apiKey = process.env.API_KEY;
 
 exports.writeNewWord = async (req, res) => {
   try {
-    const newData = 'close';
+    const newData = 'father';
 
     const apiResponse = await axios.get(
       `https://www.dictionaryapi.com/api/v3/references/sd2/json/${newData}?key=${apiKey}`,
@@ -37,7 +37,6 @@ exports.writeNewWord = async (req, res) => {
           },
         });
       }
-      throw new AppError('Word Not Found in API');
     }
     throw new AppError('Invalid response from API');
   } catch (err) {

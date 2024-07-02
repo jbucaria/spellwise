@@ -1,34 +1,36 @@
+const Word = require('../models/wordsModel');
+const catchAsync = require('../utils/catchAsync');
+
+exports.overview = catchAsync(async (req, res) => {
+  // 1) get words from collection
+  const words = await Word.find();
+  // 2) Build Template
+
+  // 3) Render template
+  res.status(200).render('overview', {
+    title: words,
+    words,
+  });
+});
+
 exports.getLogin = (req, res) => {
   res.status(200).render('login', {
     title: 'Log into your account',
   });
 };
 
-exports.addWord =
-  ('/add',
-  (req, res) => {
-    res.status(200).render('add-word');
-  });
+exports.addWord = (req, res) => {
+  res.status(200).render('add-word');
+};
 
-exports.submitWord =
-  ('/submit',
-  (req, res) => {
-    res.status(200).render('submit');
+exports.submitWord = (req, res) => {
+  res.status(200).render('submit');
+};
+exports.home = (req, res) => {
+  res.status(200).render('home');
+};
+exports.signUp = (req, res) => {
+  res.status(200).render('sign-up', {
+    title: 'Create account',
   });
-exports.account =
-  ('/account',
-  (req, res) => {
-    res.status(200).render('account');
-  });
-exports.home =
-  ('/home',
-  (req, res) => {
-    res.status(200).render('home');
-  });
-exports.signUp =
-  ('/signin',
-  (req, res) => {
-    res.status(200).render('sign-up', {
-      title: 'Create account',
-    });
-  });
+};

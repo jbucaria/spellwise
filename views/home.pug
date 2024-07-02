@@ -1,12 +1,6 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet" href="../styles/normalize.css")
-    link(rel="stylesheet" type="text/css" href="../styles/styles.css")
-    script(src="https://kit.fontawesome.com/6254b5bb38.js" crossorigin="anonymous")
-    title My Project
+extends base
+
+block content
   body
     #logoBox
       #logo
@@ -15,4 +9,4 @@ html(lang="en")
         button#login-btn.button.button1 Login
         button#sign-btn.button.button2 Sign Up
     main#main
-    script(type="module" src="./../utils/home.js")
+  

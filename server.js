@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const colors = require('colors');
 
 process.on('uncaughtException', err => {
-  console.log('Unhandled Exception! Shutting Down'.bgYellow);
+  console.log(colors.bgYellow('Unhandled Exception! Shutting Down'));
   console.log(err.name.underline, err.message.bgMagenta);
   process.exit(1);
 });

@@ -4,6 +4,17 @@
   box-sizing: border-box;
 }
 
+/* Resetting HTML and Body Styles */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  overflow: auto; /* Ensure the page can scroll */
+}
+
+/* Body Styles */
 body {
   background-image: url(../assets/books.jpg);
   background-repeat: no-repeat;
@@ -13,8 +24,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  overflow: hidden;
+  padding: 40px 40px;
+  margin-top: 60px;
+  min-height: 100vh; /* Ensure body covers entire viewport height */
 }
 
 .logo {
@@ -357,4 +369,84 @@ li a:hover {
 
 .active {
   background-color: rgb(171, 171, 2);
+}
+
+/* Table Styles */
+table.rwd-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 1em;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+}
+
+table.rwd-table th,
+table.rwd-table td {
+  padding: 12px 15px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
+}
+
+table.rwd-table th {
+  background-color: rgba(0, 152, 121, 0.9); /* Semi-transparent background */
+  color: #ffffff;
+  font-weight: bold;
+  position: sticky;
+  top: -50px;
+}
+
+table.rwd-table tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+table.rwd-table tr:nth-of-type(even) {
+  background-color: rgba(243, 243, 243, 0.7); /* Semi-transparent background */
+}
+
+table.rwd-table tr:last-of-type {
+  border-bottom: 2px solid rgba(0, 152, 121, 0.7);
+}
+
+table.rwd-table tr:hover {
+  background-color: rgba(241, 241, 241, 0.7); /* Semi-transparent background */
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  table.rwd-table {
+    border: 0;
+  }
+
+  table.rwd-table thead {
+    display: none;
+  }
+
+  table.rwd-table tr {
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  table.rwd-table td {
+    display: block;
+    text-align: right;
+    font-size: 0.8em;
+    border-bottom: 1px solid #dddddd;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  table.rwd-table td::before {
+    content: attr(data-th);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    padding-left: 10px;
+    text-align: left;
+  }
+
+  table.rwd-table tr:last-of-type td {
+    border-bottom: 0;
+  }
 }

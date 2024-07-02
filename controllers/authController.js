@@ -72,6 +72,8 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
   }
   if (!token) {
     return next(
@@ -81,7 +83,6 @@ exports.protect = catchAsync(async (req, res, next) => {
 
   // 2) Validate the token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-  console.log(decoded);
 
   // 3) Check if user still exists
   const freshUser = await User.findById(decoded.id);
@@ -91,6 +92,8 @@ exports.protect = catchAsync(async (req, res, next) => {
     );
   }
   // 4) Check if user changed password after token was issued
-  freshUser.passwordChangedAfter(decoded.iat);
+
+  //Grant Access to protected route
+  req.user = freshUser;
   next();
 });

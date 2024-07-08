@@ -1,11 +1,11 @@
 const loginEl = document.getElementById('login-btn');
 // const logoEl = document.getElementById('logo');
-const signEL = document.getElementById('sign-btn');
+const signEL = document.getElementById('say-btn');
 
 loginEl.addEventListener('click', () => {
-  window.location.href = '/login';
+  console.log('click');
 });
 
 signEL.addEventListener('click', () => {
-  window.location.href = 'sign-up.html';
+  console.log('object');
 });

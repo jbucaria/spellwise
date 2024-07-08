@@ -20,7 +20,8 @@ const totalMovementSize =
   );
 
 prev.addEventListener('click', () => {
-  if (!leftValue === 0) {
+  console.log('object');
+  if (!leftValue == 0) {
     leftValue -= -totalMovementSize;
     cCarouselInner.style.left = `${leftValue}px`;
   }

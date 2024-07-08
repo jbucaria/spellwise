@@ -2,22 +2,12 @@ extends base
 
 block content
   body
-    ul
-      li
-        a(href="/") Overview
-      
-      li
-        a(href="/submit") Spell Words
-      li
-        a(href="/home") Log Out
-    .inputbox
-      form
-        input(type="text" id="add-word" placeholder="new word..")
-        .btn
-          button(type="button" id="add-btn" class="button button1") Add Word
-          button(type="button" id="display-btn" class="button button1") Display Words
-    #message-1
-      p#validationMessage
-    #word-box
-      #word-container.word-container
-    script(src="/js/addword.js")
+    .login-form
+      h2.heading-secondary.ma-bt-lg Add New Spelling Word
+      form.form.form--login
+        .form__group
+          label.form__label(for='email') 
+          input#email.form__input(type='', placeholder='spelling word...', required)
+        
+        .form__group
+          button.btn.btn--green Submit

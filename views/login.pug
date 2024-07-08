@@ -2,23 +2,30 @@ extends base
 
 block content
   body
-    h1= word
-    h2= def
-    #logoBox
-      #logo
-        img.logo(src="./../assets/logo3.png" alt="Logo")
-    .butt
-      form.form
-        .input-group
-          span.input
-          input#email.form-control(type="email" name="email" placeholder="Email" autocomplete="username" required)
-        .input-group
-          span.input
-          input#password.form-control(type="password" name="password" placeholder="Password" autocomplete="current-password" required)
-        .submit-group
-          span.input
-          button#submit.button.button3(type="submit") Submit
-    #message
-      #login-message
-    main#main
+    header.header
+      nav.nav.nav--tours
+       a.nav__el(href='/home') Home
     
+      .header__logo
+        //- img(src='/assets/logo3.png' alt='Natours logo')
+      nav.nav.nav--user
+        if user
+          a.nav__el.nav__el--logout Log out
+          a.nav__el(href='/me')
+            img.nav__user-img(src=`/img/users/${user.photo}` alt=`Photo of ${user.name}`)
+            span= user.name.split(' ')[0]
+        else
+          a.nav__el(href='/login') Log in
+          a.nav__el.nav__el--cta(href='/signup') Sign up
+  main.main
+    .login-form
+      h2.heading-secondary.ma-bt-lg Log into your account
+      form.form.form--login
+        .form__group
+          label.form__label(for='email') Email address
+          input#email.form__input(type='email', placeholder='you@example.com', required)
+        .form__group.ma-bt-md
+          label.form__label(for='password') Password
+          input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+        .form__group
+          button.btn.btn--green Login

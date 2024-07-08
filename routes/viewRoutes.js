@@ -10,5 +10,6 @@ router.get('/add', viewController.addWord);
 router.get('/submit', authController.protect, viewController.submitWord);
 router.get('/home', viewController.home);
 router.get('/signup', viewController.signUp);
+router.get('/account', viewController.account);
 
 module.exports = router;

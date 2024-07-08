@@ -1,13 +1,6 @@
 extends base
 
 block content
-  ul
-    li
-      a(href="/") Overview
-    li
-      a(href="/submit") Spell Words
-    li
-      a(href="/home") Log Out
 
   body
     #cCarousel
@@ -22,7 +15,7 @@ block content
             article.cCarousel-item
               .infos
                 h1= word.word
-                h3= word.fl
-                h3= word.definition
-
-    script(src="./../js/carousel.js")
+                h3 Part-of-Speech: #{word.fl}
+                h3 Definition: #{word.definition}
+              .form__group
+              button.btn.btn--red Delete

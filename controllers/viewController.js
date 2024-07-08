@@ -22,6 +22,9 @@ exports.getLogin = (req, res) => {
 exports.addWord = (req, res) => {
   res.status(200).render('add-word');
 };
+exports.account = (req, res) => {
+  res.status(200).render('account');
+};
 
 exports.submitWord = (req, res) => {
   res.status(200).render('submit');

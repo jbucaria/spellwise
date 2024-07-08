@@ -1,32 +1,28 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet" href="./../styles/normalize.css")
-    link(rel="stylesheet" href="./../styles/styles.css")
-    script(src="https://kit.fontawesome.com/6254b5bb38.js" crossorigin="anonymous")
-    title Spell Wise
-  body
-    ul
-      
-      li
-        a(href="/add") Add Words
-      li
-        a(href="/submit") Spell Words
-      li
-        a(href="/home") LogOut
-    
-    table.rwd-table
-      tr
-        th Spelling Word
-        th Part of Speech
-        th Definition
-      
-      each word in words
-        tr
-          td(data-th="Spelling Word")= word.word
-          td(data-th="Part of Speech")= word.fl
-          td(data-th="Definition")= word.definition
+extends base
 
-    script(type="module" src="./../utils/overview.js")
+block content
+  ul
+    li
+      a(href="/") Overview
+    li
+      a(href="/submit") Spell Words
+    li
+      a(href="/home") Log Out
+
+  body
+    #cCarousel
+      .arrow#prev
+        i.fa-solid.fa-chevron-left
+      .arrow#next
+        i.fa-solid.fa-chevron-right
+
+      #carousel-vp
+        #cCarousel-inner
+          each word in words
+            article.cCarousel-item
+              .infos
+                h1= word.word
+                h3= word.fl
+                h3= word.definition
+
+    script(src="./../js/carousel.js")

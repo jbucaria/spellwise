@@ -6,13 +6,13 @@ const spellingWords = JSON.parse(spellingStr);
 const validationEl = document.getElementById('validationMessage');
 const nextBtn = document.getElementById('next-btn');
 const messageEl = document.getElementById('message-2');
-let word = spellingWords[0];
+const word = spellingWords[0];
 
-function getRandomItem(arr) {
-  if (arr.length === 0) return undefined;
-  const randomIndex = Math.floor(Math.random() * arr.length);
-  return arr[randomIndex];
-}
+// function getRandomItem(arr) {
+//   if (arr.length === 0) return undefined;
+//   const randomIndex = Math.floor(Math.random() * arr.length);
+//   return arr[randomIndex];
+// }
 
 function speak() {
   const inputText = word;
@@ -24,21 +24,13 @@ function speak() {
   }
 }
 
-// function getLocalStorageItem(key) {
-//   const item = localStorage.getItem(key);
-//   return item ? JSON.parse(item) : [];
-// }
-
-function setLocalStorageItem(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
-}
-
 function updateValidation(message, className) {
   messageEl.classList.add(className);
   validationEl.textContent = message;
 }
 
 speakBtn.addEventListener('click', () => {
+  console.log('click');
   if (spellingWords.length === 0) {
     updateValidation('List Empty', 'error');
     setTimeout(() => {
@@ -51,40 +43,11 @@ speakBtn.addEventListener('click', () => {
 });
 
 nextBtn.addEventListener('click', () => {
-  word = getRandomItem(spellingWords);
-  console.log(word);
+  console.log('click');
 });
 
 checkBtn.addEventListener('click', () => {
-  const wordInput = document.getElementById('spell-word').value;
-  let correctWords = localStorage.getItem('correctWords');
-  correctWords = correctWords ? JSON.parse(correctWords) : [];
-  let message = '';
-  let className = '';
-
-  if (wordInput === word) {
-    message = 'Correct';
-    className = 'success';
-    correctWords.push(word);
-    setLocalStorageItem('correctWords', correctWords);
-    spellingWords.splice(0, 1);
-    setLocalStorageItem('spellingWords', spellingWords);
-    word = getRandomItem(spellingWords);
-  } else if (wordInput === '') {
-    message = 'Please Enter Spelling Word';
-    className = 'error';
-  } else {
-    message = 'Incorrect';
-    className = 'error';
-  }
-
-  updateValidation(message, className);
-
-  setTimeout(() => {
-    messageEl.classList.remove(className);
-    validationEl.textContent = '';
-    document.getElementById('spell-word').value = '';
-  }, 1500);
+  console.log('click');
 });
 
 const textContainer = document.getElementById('spell-word');
@@ -92,7 +55,7 @@ const deleteKey = document.querySelector('.delete');
 const spaceKey = document.querySelector('.space');
 const capsLock = document.querySelector('.capslock');
 const allKey = document.querySelectorAll('.key');
-let isCaps = false;
+const isCaps = false;
 
 let isTypingWithKeyboard = false; // Flag to differentiate keyboard input
 
@@ -152,7 +115,8 @@ document.addEventListener('keydown', event => {
 });
 
 // Add event listeners for on-screen keyboard clicks (similar to your existing code)
-for (const key of allKey) {
+
+allKey.forEach(key => {
   key.addEventListener('click', () => {
     if (
       key.classList.contains('delete') ||
@@ -171,7 +135,28 @@ for (const key of allKey) {
     // Reset the flag after handling the click
     isTypingWithKeyboard = false;
   });
-}
+});
+
+// for (const key of allKey) {
+//   key.addEventListener('click', () => {
+//     if (
+//       key.classList.contains('delete') ||
+//       key.classList.contains('enter') ||
+//       key.classList.contains('space') ||
+//       key.classList.contains('capslock')
+//     ) {
+//       return;
+//     }
+
+//     // Handle typing only if not typing with the keyboard
+//     if (!isTypingWithKeyboard) {
+//       handleTyping(key.innerText);
+//     }
+
+//     // Reset the flag after handling the click
+//     isTypingWithKeyboard = false;
+//   });
+// }
 
 // Initialize cursor on load
 updateCursor(0);
@@ -197,31 +182,61 @@ spaceKey.addEventListener('click', () => {
   updateCursor(newContent.length); // Move cursor beside the last letter typed
 });
 
+// capsLock.addEventListener('click', () => {
+//   if (isCaps) {
+//     capsLock.classList.remove('active');
+//     for (const key of allKey) {
+//       if (
+//         key.classList.contains('delete') ||
+//         key.classList.contains('enter') ||
+//         key.classList.contains('space') ||
+//         key.classList.contains('capslock')
+//       ) {
+//         //
+//       } else key.innerText = key.innerText.toLowerCase();
+//     }
+//   } else {
+//     capsLock.classList.add('active');
+//     for (const key of allKey) {
+//       if (
+//         key.classList.contains('delete') ||
+//         key.classList.contains('enter') ||
+//         key.classList.contains('space') ||
+//         key.classList.contains('capslock')
+//       ) {
+//         //
+//       } else key.innerText = key.innerText.toUpperCase();
+//     }
+//   }
+//   isCaps = !isCaps;
+// });
+
 capsLock.addEventListener('click', () => {
   if (isCaps) {
     capsLock.classList.remove('active');
-    for (const key of allKey) {
+    allKey.forEach(key => {
       if (
         key.classList.contains('delete') ||
         key.classList.contains('enter') ||
         key.classList.contains('space') ||
         key.classList.contains('capslock')
       ) {
-        //
-      } else key.innerText = key.innerText.toLowerCase();
-    }
+        return;
+      }
+      key.innerText = key.innerText.toLowerCase();
+    });
   } else {
     capsLock.classList.add('active');
-    for (const key of allKey) {
+    allKey.forEach(key => {
       if (
         key.classList.contains('delete') ||
         key.classList.contains('enter') ||
         key.classList.contains('space') ||
         key.classList.contains('capslock')
       ) {
-        //
-      } else key.innerText = key.innerText.toUpperCase();
-    }
+        return;
+      }
+      key.innerText = key.innerText.toUpperCase();
+    });
   }
-  isCaps = !isCaps;
 });

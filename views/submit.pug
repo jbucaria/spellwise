@@ -1,12 +1,6 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    script(src="https://kit.fontawesome.com/6254b5bb38.js" crossorigin="anonymous")
-    link(rel="stylesheet" href="./../styles/normalize.css")
-    link(rel="stylesheet" href="./../styles/styles.css")
-    title Spell Wise
+extends base
+
+block content
   body
     ul
       li
@@ -72,4 +66,4 @@ html(lang="en")
         .key m
       .row
         .key.space
-    script(src="./../utils/submit.js" type="module")
+    script(src="./../js/submit.js" type="module")

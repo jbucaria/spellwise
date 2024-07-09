@@ -17,6 +17,6 @@ const wordSchema = new mongoose.Schema({
   },
 });
 
-const WordInput = mongoose.model('WordInput', wordSchema);
+const WordInput = mongoose.model('words', wordSchema);
 
 module.exports = WordInput;

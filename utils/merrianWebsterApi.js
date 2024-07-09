@@ -7,7 +7,7 @@ const apiKey = process.env.API_KEY;
 
 exports.writeNewWord = async (req, res) => {
   try {
-    const newData = 'father';
+    const newData = 'sheep';
 
     const apiResponse = await axios.get(
       `https://www.dictionaryapi.com/api/v3/references/sd2/json/${newData}?key=${apiKey}`,

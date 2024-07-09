@@ -1,9 +1,7 @@
 const axios = require('axios');
-const dotenv = require('dotenv');
+
 const AppError = require('./appError');
 const WordInput = require('../models/wordsModel');
-
-dotenv.config({ path: 'config.env' });
 
 const apiKey = process.env.API_KEY;
 

@@ -4,7 +4,7 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 
-router.get('/', viewController.overview);
+router.get('/', viewController.home);
 router.get('/login', viewController.getLogin);
 router.get('/add', viewController.addWord);
 router.get('/submit', authController.protect, viewController.submitWord);

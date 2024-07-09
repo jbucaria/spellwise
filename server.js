@@ -7,10 +7,9 @@ process.on('uncaughtException', err => {
   console.log(err.name.underline, err.message.bgMagenta);
   process.exit(1);
 });
+dotenv.config({ path: './config.env' });
 
 const app = require('./app');
-
-dotenv.config({ path: './config.env' });
 
 const DB = process.env.DATABASE.replace(
   '<PASSWORD>',

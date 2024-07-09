@@ -21,6 +21,7 @@ const totalMovementSize =
 
 prev.addEventListener('click', () => {
   console.log('object');
+  // eslint-disable-next-line eqeqeq
   if (!leftValue == 0) {
     leftValue -= -totalMovementSize;
     cCarouselInner.style.left = `${leftValue}px`;

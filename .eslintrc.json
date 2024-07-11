@@ -4,6 +4,11 @@
     "es2021": true, // Sets the ECMAScript syntax to version 2021
     "node": true
   },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": true
+  },
   "extends": ["airbnb", "prettier", "plugin:node/recommended"],
   "plugins": ["prettier"],
   "rules": {

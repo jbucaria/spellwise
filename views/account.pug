@@ -8,6 +8,10 @@ mixin navItem(link, text, icon, active)
       | #{text}
 
 block content
+  header.header
+    nav.nav.nav--tours
+      a.nav__el(href='/main') Home
+
   main.main
     .user-view
       nav.user-view__menu

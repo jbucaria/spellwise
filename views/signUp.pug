@@ -1,0 +1,40 @@
+extends base
+
+block content
+  body
+    header.header
+      nav.nav.nav--tours
+
+    
+      .header__logo
+        //- img(src='/assets/logo3.png' alt='Natours logo')
+      nav.nav.nav--user
+        if user
+          a.nav__el.nav__el--logout Log out
+          a.nav__el(href='/me')
+            img.nav__user-img(src=`/img/users/${user.photo}` alt=`Photo of ${user.name}`)
+            span= user.name.split(' ')[0]
+        else
+          a.nav__el(href='/login') Log in
+          a.nav__el.nav__el--cta(href='/signup') Sign up
+
+    main.main
+      .login-form
+        h2.heading-secondary.ma-bt-lg Create your account
+        form.form.form--login(action='/login', method='POST')
+          .form__group
+            label.form__label(for='name') Your name
+            input#name.form__input(type='text', placeholder='Your Name', required)
+          .form__group
+            label.form__label(for='email') Email address
+            input#email.form__input(type='email', placeholder='you@example.com', required)
+          .form__group.ma-bt-md
+            label.form__label(for='password') Password
+            input#password.form__input(type='password', placeholder='••••••••', required, minlength='8')
+          .form__group
+            label.form__label(for='confirm-password') Confirm password
+            input#confirm-password.form__input(type='password', placeholder='........', required)
+          button.btn.btn--green(type='submit') Create Account
+
+    footer.footer
+      p Copyright © 2024 Your Company. All rights reserved.

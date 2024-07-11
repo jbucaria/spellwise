@@ -1,0 +1,42 @@
+extends base
+
+block content
+  body
+    button#clear.clear.btn
+      i.fas.fa-trash
+      | Clear Cards
+
+    h1
+      | Flash Cards
+      button#show.btnn.btn-small
+        i.fas.fa-plus
+        | Add New Card
+
+    #cards-container.cards
+      
+
+    .navigation
+      button#prev.nav-button
+        i.fas.fa-arrow-left
+      p#current
+
+      button#next.nav-button
+        i.fas.fa-arrow-right
+
+    #add-container.add-container
+      h1
+        | Add New Card
+        button#hide.btnn.btn-small.btn-ghost
+          i.fas.fa-times
+
+      .form-group
+        label(for='question') Question
+        textarea#question(placeholder='Enter question...')
+
+      .form-group
+        label(for='answer') Answer
+        textarea#answer(placeholder='Enter Answer...')
+
+      button#add-card.btnn
+        i.fas.fa-plus
+        | Add Card

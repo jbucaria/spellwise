@@ -70,14 +70,14 @@ footer {
   z-index: 1000; /* Ensure it stays on top of other content */
 }
 
-.main {
-  background-color: #f7f7f7;
+/* .main {
+  background-color: #832e2e;
   padding: 8rem 6rem;
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
   position: relative;
-}
+} */
 
 .flex {
   display: -webkit-box;
@@ -209,6 +209,22 @@ footer {
   right: 2rem;
   width: 70%;
   z-index: 10;
+}
+.buttons-container {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  margin-bottom: 130px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center; /* Centers the buttons horizontally within the container */
+}
+.buttons button {
+  margin: 0 5px; /* Adjust horizontal margin between buttons */
 }
 
 .btn,
@@ -992,126 +1008,6 @@ footer {
   border-bottom: 1px solid currentColor;
 }
 
-.card-container {
-  max-width: 120rem;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 7rem;
-}
-
-.card {
-  border-radius: 3px;
-  overflow: hidden;
-  -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  -webkit-transition: 0.3s all;
-  transition: 0.3s all;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-.card__header {
-  position: relative;
-}
-.card__picture {
-  position: relative;
-  -webkit-clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);
-  clip-path: polygon(0 0, 100% 0%, 100% 83%, 0% 98%);
-  height: 22rem;
-}
-.card__picture-overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    right bottom,
-    from(#7dd56f),
-    to(#28b487)
-  );
-  background-image: linear-gradient(to right bottom, #7dd56f, #28b487);
-  opacity: 0.7;
-}
-.card__picture-img {
-  -o-object-fit: cover;
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
-}
-.card__details {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-row-gap: 1.75rem;
-  grid-column-gap: 2rem;
-  padding: 2.5rem 3rem;
-}
-.card__sub-heading {
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  grid-column: 1 / -1;
-}
-.card__text {
-  grid-column: 1 / -1;
-  font-size: 1.5rem;
-  font-style: italic;
-  margin-top: -1rem;
-  margin-bottom: 0.75rem;
-}
-.card__data {
-  font-size: 1.3rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-.card__data svg {
-  margin-right: 0.7rem;
-}
-.card__icon {
-  height: 2rem;
-  width: 2rem;
-  fill: #55c57a;
-}
-.card__footer {
-  background-color: #f7f7f7;
-  padding: 2.5rem 3rem;
-  border-top: 1px solid #f1f1f1;
-  font-size: 1.4rem;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-column-gap: 1rem;
-  grid-row-gap: 1rem;
-  margin-top: auto;
-}
-.card__footer-value {
-  font-weight: 700;
-}
-.card__footer-text {
-  color: #999;
-}
-.card__ratings {
-  grid-row: 2 / 3;
-}
-.card .btn-small,
-.card .btn {
-  grid-row: 1 / 3;
-  justify-self: end;
-  -ms-flex-item-align: center;
-  align-self: center;
-}
-
 .error {
   position: absolute;
   top: 35%;
@@ -1291,139 +1187,195 @@ footer {
 .active {
   background-color: rgb(171, 171, 2);
 }
+@import url('https://fonts.googleapis.com/css?family=Lato:300,500,700&display=swap');
 
-/* Carousel */
-
-*,
-::before,
-::after {
-  margin: 0;
-  padding: 0;
+* {
   box-sizing: border-box;
 }
 
 body {
-  min-height: 100vh;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-}
-
-#cCarousel {
-  position: relative;
-  max-width: 900px;
-  margin: auto;
-}
-
-#cCarousel .arrow {
-  position: absolute;
-  top: 50%;
-  display: flex;
-  width: 45px;
-  height: 45px;
-  justify-content: center;
   align-items: center;
-  border-radius: 50%;
-  z-index: 1;
-  font-size: 26px;
-  color: white;
-  background: #00000072;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Lato', sans-serif;
+}
+
+h1 {
+  position: relative;
+}
+
+h1 button {
+  position: absolute;
+  right: 0;
+  transform: translate(120%, -50%);
+  z-index: 2;
+}
+
+.btnn {
   cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  font-size: 14px;
+  margin-top: 20px;
+  padding: 10px 15px;
 }
 
-#cCarousel #prev {
-  left: 0px;
+.btnn-small {
+  font-size: 12px;
+  padding: 5px 10px;
 }
 
-#cCarousel #next {
-  right: 0px;
+.btnn-ghost {
+  border: 0;
+  background-color: transparent;
 }
 
-#carousel-vp {
-  width: 770px;
-  height: 400px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  margin: auto;
-}
-
-@media (max-width: 770px) {
-  #carousel-vp {
-    width: 510px;
-  }
-}
-
-@media (max-width: 510px) {
-  #carousel-vp {
-    width: 250px;
-  }
-}
-
-#cCarousel #cCarousel-inner {
-  display: flex;
+.clear {
   position: absolute;
-  transition: 0.3s ease-in-out;
-  gap: 10px;
-  left: 0px;
+  bottom: 30px;
+  left: 30px;
 }
 
-.cCarousel-item {
-  width: 250px;
-  height: 365px;
-  border: 2px solid white;
-  border-radius: 15px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+.cards {
+  perspective: 1000px;
+  position: relative;
+  height: 300px;
+  width: 500px;
+  max-width: 100%;
 }
 
-.cCarousel-item img {
-  width: 100%;
-  object-fit: cover;
-  min-height: 246px;
-  color: white;
-}
-
-.cCarousel-item .infos {
+.card {
+  position: absolute;
+  opacity: 0;
+  font-size: 1.5em;
+  top: 0;
+  left: 0;
   height: 100%;
+  width: 100%;
+  transform: translateX(50%) rotateY(-10deg);
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
+}
+
+.card.active {
+  cursor: pointer;
+  opacity: 1;
+  z-index: 10;
+  transform: translateX(0) rotateY(0deg);
+}
+
+.card.left {
+  transform: translateX(-50%) rotateY(10deg);
+}
+
+.inner-card {
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease;
+}
+
+.card.show-answer .inner-card {
+  transform: rotateX(180deg);
+}
+
+.inner-card-front,
+.inner-card-back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+}
+
+.inner-card-front {
+  transform: rotateX(0deg);
+  z-index: 2;
+}
+
+.inner-card-back {
+  transform: rotateX(180deg);
+}
+
+.inner-card-front::after,
+.inner-card-back::after {
+  content: '\f021  Flip';
+  font-family: 'Font Awesome 5 Free', Lato, sans-serif;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #ddd;
+}
+
+.navigation {
+  display: flex;
+  margin: 20px 0;
+}
+
+.navigation .nav-button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.navigation p {
+  margin: 0 25px;
+}
+
+.add-container {
+  opacity: 0;
+  z-index: -1;
+  background-color: #f0f0f0;
+  border-top: 2px solid #eee;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  background: white;
-  color: black;
-  overflow: auto;
-  padding: 10px;
+  justify-content: center;
+  padding: 10px 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  transition: 0.3s ease;
 }
 
-.cCarousel-item .infos h1.word {
-  color: #ff6347; /* Tomato color for fun */
-  font-weight: bold;
-  font-size: 24px; /* Adjust size as needed */
-  margin: 10px 0; /* Optional: Add margin for spacing */
+.add-container.show {
+  opacity: 1;
+  z-index: 2;
 }
 
-.cCarousel-item .infos h3.fl {
-  font-style: italic; /* Italic for part of speech */
-  color: #666; /* Grey color for contrast */
-  margin: 5px 0; /* Optional: Add margin for spacing */
+.add-container h3 {
+  margin: 10px 0;
 }
 
-.cCarousel-item .infos h3.definition {
-  color: #333; /* Dark color for readability */
-  font-size: 18px; /* Adjust size as needed */
-  margin: 5px 0; /* Optional: Add margin for spacing */
-}
-.cCarousel-item .infos button {
-  background: #222;
-  padding: 10px 30px;
-  border-radius: 15px;
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
+.form-group label {
+  display: block;
+  margin: 20px 0 10px;
 }
 
-/* Header */
+.form-group textarea {
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  font-size: 16px;
+  padding: 12px;
+  min-width: 500px;
+  max-width: 100%;
+}

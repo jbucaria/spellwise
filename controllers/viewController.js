@@ -1,13 +1,13 @@
 const Word = require('../models/wordsModel');
 const catchAsync = require('../utils/catchAsync');
 
-exports.overview = catchAsync(async (req, res) => {
+exports.main = catchAsync(async (req, res) => {
   // 1) get words from collection
   const words = await Word.find();
   // 2) Build Template
 
   // 3) Render template
-  res.status(200).render('overview', {
+  res.status(200).render('main', {
     title: words,
     words,
   });
@@ -33,7 +33,7 @@ exports.home = (req, res) => {
   res.status(200).render('home');
 };
 exports.signUp = (req, res) => {
-  res.status(200).render('sign-up', {
+  res.status(200).render('signUp', {
     title: 'Create account',
   });
 };

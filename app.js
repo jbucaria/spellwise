@@ -1,7 +1,10 @@
-require('dotenv').config();
-
 const express = require('express');
 const morgan = require('morgan');
+const rateLimit = require('express-rate-limit');
+// const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+const hpp = require('hpp');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 
@@ -13,11 +16,15 @@ const viewRouter = require('./routes/viewRoutes');
 
 const app = express();
 
+// Global MiddleWares
+//Set security headers
+// app.use(helmet());
+
 //PUG Settings
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
-//HTTP request logger. Formats the log output to be concise and colorful
+//Development logging
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
   console.log('Running in development mode');
@@ -27,16 +34,44 @@ if (process.env.NODE_ENV === 'development') {
   console.log('Running in unkown mode');
 }
 
+// Limit requests from same IP to our API
+const limiter = rateLimit({
+  max: 100,
+  windowMs: 60 * 60 * 1000,
+  message: 'Too many requests from this IP, please try again in an hour!',
+});
+app.use('/api', limiter);
+
+// Body parser, reading data from body into req.body
+app.use(express.json({ limit: '10kb' }));
+
+// Data sanitization against NoSQL query injection
+app.use(mongoSanitize());
+
+// Data sanitization against XSS
+app.use(xss());
+
+// Prevent parameter pollution in URL. WHitelist aloows duplicates in the query string
+app.use(
+  hpp({
+    whitelist: [
+      'duration',
+      'ratingsQuantity',
+      'ratingsAverage',
+      'maxGroupSize',
+      'difficulty',
+      'price',
+    ],
+  }),
+);
+
 //Body Parser = Parses the JSON payload and makes it available in req.body
 //Cookie Parser = Parses data from cookie (specifically the JWT token)
-app.use(express.json());
+app.use(express.json({ limit: '10kb' }));
 app.use(cookieParser());
 
 //Serves static files from the specified directory.
 app.use(express.static(path.join(__dirname, 'public')));
-
-//Set security headers
-// app.use(helmet());
 
 //Middleware - logs the duration of the query,
 app.use((req, res, next) => {

@@ -1187,6 +1187,8 @@ footer {
 .active {
   background-color: rgb(171, 171, 2);
 }
+/* Main Card */
+
 @import url('https://fonts.googleapis.com/css?family=Lato:300,500,700&display=swap');
 
 * {
@@ -1216,9 +1218,15 @@ h1 button {
   z-index: 2;
 }
 
+#current {
+  color: rgb(17, 16, 16);
+  font-size: large;
+  font-weight: 400;
+}
+
 .btnn {
   cursor: pointer;
-  background-color: #fff;
+  background-color: #4961ec;
   border: 1px solid #aaa;
   border-radius: 3px;
   font-size: 14px;

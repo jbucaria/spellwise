@@ -9,7 +9,7 @@ exports.main = catchAsync(async (req, res) => {
   // 3) Render template
   res.status(200).render('main', {
     title: words,
-    words,
+    cardsData: words,
   });
 });
 

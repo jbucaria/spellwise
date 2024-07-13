@@ -11,9 +11,11 @@ block content
       button#show.btnn.btn-small
         i.fas.fa-plus
         | Add New Card
+        // Inject cardsData for use in main.js
+    script.
+      window.cardsData = !{JSON.stringify(cardsData)}
 
     #cards-container.cards
-      
 
     .navigation
       button#prev.nav-button

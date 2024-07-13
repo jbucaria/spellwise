@@ -1,25 +1,8 @@
+import { get } from 'mongoose';
+
 // Keep track of current card
 
 export const cardsEl = [];
-
-const cardsData = [
-  {
-    question: 'What must a variable?',
-    answer: 'A letter, $ or _',
-  },
-  {
-    question: 'What is a variable?',
-    answer: 'Container for a piece of data',
-  },
-  {
-    question: 'Example of Case Sensitive Variable',
-    answer: 'thisIsAVariable',
-  },
-  {
-    question: 'Example of Case Sensitive Variable',
-    answer: 'thisIsAVariable',
-  },
-];
 
 // Create all cards
 export function createCards() {
@@ -29,7 +12,7 @@ export function createCards() {
 export function updateCurrentText() {
   let currentActiveCard = 0;
   const currentEl = document.getElementById('current');
-  currentEl.innerText = `${currentActiveCard + 2}/${cardsEl.length}`;
+  currentEl.innerText = `${currentActiveCard + 1}/${cardsEl.length}`;
 }
 
 // Create a single card in DOM
@@ -46,13 +29,14 @@ function createCard(data, index) {
   card.innerHTML = `
   <div class="inner-card">
   <div class="inner-card-front">
-    <p>
-      ${data.question}
-    </p>
+  <h3>${data.fl}</h3>
+  <br>
+  
+    <p>${data.definition}</p>
   </div>
   <div class="inner-card-back">
     <p>
-      ${data.answer}
+      ${data.word}
     </p>
   </div>
 </div>

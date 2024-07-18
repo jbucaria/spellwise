@@ -7,13 +7,15 @@ const wordSchema = new mongoose.Schema({
     requried: [true, 'Must provide a word'],
     validate: [validator.isAlpha, 'Word must only contain letters'],
   },
-  fl: {
-    type: String,
-    required: [true, 'Must provide Part of Speech'],
-  },
   definition: {
-    type: String,
+    type: [String],
     required: [true, 'Must provide a definition'],
+  },
+  audio: {
+    type: String,
+  },
+  phonetic: {
+    type: String,
   },
 });
 

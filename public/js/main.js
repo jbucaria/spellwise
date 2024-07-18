@@ -1,4 +1,4 @@
-import { get } from 'mongoose';
+const WordInput = require('../../models/wordsModel');
 
 // Keep track of current card
 
@@ -9,8 +9,9 @@ export function createCards() {
   cardsData.forEach((data, index) => createCard(data, index));
 }
 
-export function updateCurrentText() {
-  let currentActiveCard = 0;
+let currentActiveCard = 0;
+
+function updateCurrentText() {
   const currentEl = document.getElementById('current');
   currentEl.innerText = `${currentActiveCard + 1}/${cardsEl.length}`;
 }
@@ -27,19 +28,20 @@ function createCard(data, index) {
   }
 
   card.innerHTML = `
-  <div class="inner-card">
+<div class="inner-card">
   <div class="inner-card-front">
-  <h3>${data.fl}</h3>
-  <br>
-  
     <p>${data.definition}</p>
+    <button id="inner-button" class="btnn btn-small">
+      <i class="fas fa-play"></i> Say Word 
+    </button>
   </div>
   <div class="inner-card-back">
-    <p>
-      ${data.word}
-    </p>
+    <p>${data.word}</p>
   </div>
 </div>
+
+
+
   `;
   // Show number of cards
   updateCurrentText();
@@ -52,4 +54,21 @@ function createCard(data, index) {
   cardsContainer.appendChild(card);
 
   updateCurrentText();
+}
+
+export function speakWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.rate = 0.4;
+  utterance.lang = 'en-us';
+  speechSynthesis.speak(utterance);
+}
+
+export function attachButtonListeners() {
+  const buttons = document.querySelectorAll('.inner-card-front button');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', event => {
+      event.stopPropagation(); // Prevent parent click action
+    });
+  });
 }

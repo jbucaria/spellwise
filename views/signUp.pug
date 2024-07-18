@@ -19,9 +19,9 @@ block content
           a.nav__el.nav__el--cta(href='/signup') Sign up
 
     main.main
-      .login-form
+      .signup-form
         h2.heading-secondary.ma-bt-lg Create your account
-        form.form.form--login(action='/login', method='POST')
+        form.form.form--signup
           .form__group
             label.form__label(for='name') Your name
             input#name.form__input(type='text', placeholder='Your Name', required)
@@ -34,7 +34,7 @@ block content
           .form__group
             label.form__label(for='confirm-password') Confirm password
             input#confirm-password.form__input(type='password', placeholder='........', required)
-          button.btn.btn--green(type='submit') Create Account
+          button#submit-btn.btn.btn--green(type='submit') Create Account
 
-    footer.footer
-      p Copyright © 2024 Your Company. All rights reserved.
+    
+    

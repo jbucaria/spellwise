@@ -37,3 +37,8 @@ exports.signUp = (req, res) => {
     title: 'Create account',
   });
 };
+exports.menu = (req, res) => {
+  res.status(200).render('menu', {
+    title: 'Create account',
+  });
+};

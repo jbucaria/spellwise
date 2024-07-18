@@ -7,9 +7,10 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+// const favicon = require('serve-favicon');
 
 const AppError = require('./utils/appError');
-const globlaErrorHandler = require('./controllers/errorController');
+const globalErrorHandler = require('./controllers/errorController');
 const wordRouter = require('./routes/wordRoutes');
 const userRouter = require('./routes/userRoutes');
 const viewRouter = require('./routes/viewRoutes');
@@ -65,6 +66,9 @@ app.use(
   }),
 );
 
+//Favicon Settigs
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 //Body Parser = Parses the JSON payload and makes it available in req.body
 //Cookie Parser = Parses data from cookie (specifically the JWT token)
 app.use(express.json({ limit: '10kb' }));
@@ -74,21 +78,21 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Middleware - logs the duration of the query,
-app.use((req, res, next) => {
-  const start = Date.now();
-  res.on('finish', () => {
-    const duration = Date.now() - start;
-    console.log(`Query took ${duration} milliseconds`);
-  });
-  next();
-});
+// app.use((req, res, next) => {
+//   const start = Date.now();
+//   res.on('finish', () => {
+//     const duration = Date.now() - start;
+//     console.log(`Query took ${duration} milliseconds`);
+//   });
+//   next();
+// });
 
 //Testing midleware
-app.use((req, res, next) => {
-  req.requestTime = new Date().toISOString();
-  // console.log(req.cookies);
-  next();
-});
+// app.use((req, res, next) => {
+//   req.requestTime = new Date().toISOString();
+// console.log(req.cookies);
+//   next();
+// });
 
 //Mounting the Router
 app.use('/', viewRouter);
@@ -101,6 +105,6 @@ app.all('*', (req, res, next) => {
 });
 
 // Handles all errors that occur in the application. It is invoked whenever an error is passed to next(). It sends a JSON response with the error details to the client.
-app.use(globlaErrorHandler);
+app.use(globalErrorHandler);
 
 module.exports = app;

@@ -63,11 +63,15 @@ body {
 
 /* Footer */
 footer {
+  display: flex;
+  padding-top: 5px;
+  align-content: center;
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   z-index: 1000; /* Ensure it stays on top of other content */
+  height: 80px;
 }
 
 /* .main {
@@ -115,7 +119,7 @@ footer {
 
 .alert {
   position: fixed;
-  top: 0;
+  top: 10px;
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
@@ -131,7 +135,7 @@ footer {
   box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
 }
 .alert--success {
-  background-color: #20bf6b;
+  background-color: #05ca0b;
 }
 .alert--error {
   background-color: #eb4d4b;
@@ -769,6 +773,7 @@ footer {
   display: -ms-flexbox;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 .footer__nav li {
   margin-left: 1.5rem;
@@ -1040,6 +1045,7 @@ footer {
   margin: 0 auto;
 }
 
+.signup-form,
 .login-form {
   margin: 0 auto;
   max-width: 55rem;
@@ -1181,11 +1187,11 @@ footer {
 }
 
 .key:active {
-  background: rgb(171, 171, 2);
+  background: rgb(236, 236, 232);
 }
 
 .active {
-  background-color: rgb(171, 171, 2);
+  background-color: rgb(242, 242, 235);
 }
 /* Main Card */
 
@@ -1207,12 +1213,8 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
-h1 {
-  position: relative;
-}
-
 h1 button {
-  position: absolute;
+  position: re;
   right: 0;
   transform: translate(120%, -50%);
   z-index: 2;
@@ -1224,14 +1226,17 @@ h1 button {
   font-weight: 400;
 }
 
+#inner-button {
+  border-radius: 20px;
+  background-color: #2192c7;
+}
 .btnn {
   cursor: pointer;
   background-color: #4961ec;
   border: 1px solid #aaa;
-  border-radius: 3px;
+  border-radius: 15px;
   font-size: 14px;
-  margin-top: 20px;
-  padding: 10px 15px;
+  position: relative;
 }
 
 .btnn-small {
@@ -1239,14 +1244,28 @@ h1 button {
   padding: 5px 10px;
 }
 
+.button-container {
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  justify-content: flex-end;
+  margin: 10px;
+  gap: 10px;
+}
+
 .btnn-ghost {
   border: 0;
   background-color: transparent;
 }
 
+.button-container button i {
+  margin-right: 8px;
+}
+
 .clear {
   position: absolute;
-  bottom: 30px;
+  bottom: 130px;
   left: 30px;
 }
 
@@ -1304,11 +1323,17 @@ h1 button {
   top: 0;
   left: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
   background: #fff;
+}
+
+.inner-card-front button {
+  margin-top: auto;
+  margin-bottom: 10px;
 }
 
 .inner-card-front {
@@ -1320,16 +1345,32 @@ h1 button {
   transform: rotateX(180deg);
 }
 
-.inner-card-front::after,
-.inner-card-back::after {
-  content: '\f021  Flip';
+#inner-button {
+  position: absolute; /* Absolute positioning within the relative parent */
+  bottom: 10px; /* Distance from the bottom */
+  left: 10px; /* Distance from the left */
+}
+
+.inner-card-front::after {
+  content: '\f021  click for spelling';
   font-family: 'Font Awesome 5 Free', Lato, sans-serif;
   position: absolute;
-  top: 10px;
+  bottom: 10px;
+  right: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #5c1616;
+}
+
+.inner-card-back::after {
+  content: '\f021  Click for definition';
+  font-family: 'Font Awesome 5 Free', Lato, sans-serif;
+  position: absolute;
+  bottom: 10px;
   right: 10px;
   font-weight: bold;
   font-size: 16px;
-  color: #ddd;
+  color: #5c1616;
 }
 
 .navigation {
@@ -1348,10 +1389,15 @@ h1 button {
   margin: 0 25px;
 }
 
+.say-container,
 .add-container {
   opacity: 0;
   z-index: -1;
-  background-color: #f0f0f0;
+  width: 300px;
+  background-image: url('./../assets/books.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-top: 2px solid #eee;
   display: flex;
   flex-direction: column;
@@ -1365,6 +1411,7 @@ h1 button {
   transition: 0.3s ease;
 }
 
+.say-container.show,
 .add-container.show {
   opacity: 1;
   z-index: 2;
@@ -1377,6 +1424,8 @@ h1 button {
 .form-group label {
   display: block;
   margin: 20px 0 10px;
+  font-size: 30px;
+  color: #ed0505;
 }
 
 .form-group textarea {
@@ -1386,4 +1435,28 @@ h1 button {
   padding: 12px;
   min-width: 500px;
   max-width: 100%;
+}
+
+p {
+  color: #aaa;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.footer__copyright {
+  font-size: 12px;
+}
+.card.active.card.show-answer p {
+  text-transform: capitalize;
+}
+
+.phonetic {
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: 25px; /* Adjust as needed */
+  color: #555; /* Change color if desired */
+  margin-bottom: 5px; /* Space between phonetic and definition */
 }

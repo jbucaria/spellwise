@@ -12,7 +12,6 @@ router.get('/main', authController.isLoggedIn, viewController.main);
 router.get('/account', authController.isLoggedIn, viewController.account);
 router.get('/signup', viewController.signUp);
 router.get('/submit', authController.isLoggedIn, viewController.submitWord);
-// router.get('/home', viewController.home);
-// router.get('/overview', viewController.overview);
+router.get('/menu', authController.isLoggedIn, viewController.menu);
 
 module.exports = router;

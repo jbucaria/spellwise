@@ -3,11 +3,16 @@
 import '@babel/polyfill';
 import { login, logout } from './login';
 import { updateSettings } from './updateSettings';
-import { createCards, cardsEl, updateCurrentText } from './main';
+import { createCards, cardsEl, speakWord, attachButtonListeners } from './main';
+import { writeNewWord } from './createNewWord';
+import { deleteWord } from './deleteWord';
+import { showAlert } from './alerts';
+import { signUp } from './signUp';
 
 // DOM ELEMENTS
 // Login/Logout
-const loginForm = document.querySelector('.form--login');
+const loginForm = document.querySelector('.login-form');
+const signUpForm = document.querySelector('.signup-form');
 const logOutBtn = document.querySelector('.nav__el--logout');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
@@ -19,12 +24,32 @@ const nextBtn = document.getElementById('next');
 const cardsContainer = document.getElementById('cards-container');
 const showBtn = document.getElementById('show');
 const hideBtn = document.getElementById('hide');
-const questionEl = document.getElementById('question');
-const answerEl = document.getElementById('answer');
+const newWordEl = document.getElementById('newword');
 const addCardBtn = document.getElementById('add-card');
 const addContainer = document.getElementById('add-container');
+const clearBtn = document.getElementById('clear');
+const spellBtn = document.getElementById('spell');
+const sayContainer = document.getElementById('say-container');
+const hideSpellBtn = document.getElementById('hide-spell');
+const checkWordEl = document.getElementById('checkword');
+const checkWordBtn = document.getElementById('check-word');
 
-// DELEGATION
+if (signUpForm)
+  signUpForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const passwordConfirm = document.getElementById('confirm-password').value;
+    signUp(name, email, password, passwordConfirm);
+  });
+
+if (clearBtn)
+  clearBtn.addEventListener('click', () => {
+    let word = cardsData[currentActiveCard]._id;
+    deleteWord(word);
+  });
+
 // Login Form
 if (loginForm)
   loginForm.addEventListener('submit', e => {
@@ -65,23 +90,36 @@ if (userPasswordForm)
 
 //Main
 // Next button
+let currentActiveCard = 0; // Global variable
+
+function updateCurrentText() {
+  const currentEl = document.getElementById('current');
+  currentEl.innerText = `${currentActiveCard + 1}/${cardsEl.length}`;
+}
 
 if (cardsContainer) {
-  let currentActiveCard = 0;
   createCards();
+
+  attachButtonListeners();
 
   nextBtn.addEventListener('click', () => {
     cardsEl[currentActiveCard].className = 'card left';
+
     currentActiveCard += 1;
+
     if (currentActiveCard > cardsEl.length - 1) {
       currentActiveCard = cardsEl.length - 1;
     }
+
     cardsEl[currentActiveCard].className = 'card active';
-    // updateCurrentText();
-    console.log(currentActiveCard);
+    updateCurrentText();
   });
 
-  // Prev button
+  updateCurrentText();
+}
+
+// Prev button
+if (prevBtn)
   prevBtn.addEventListener('click', () => {
     cardsEl[currentActiveCard].className = 'card right';
     currentActiveCard -= 1;
@@ -92,25 +130,64 @@ if (cardsContainer) {
     updateCurrentText();
   });
 
-  // Show add container
+function speak() {
+  const buttons = document.querySelectorAll('.inner-card-front button');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', event => {
+      event.stopPropagation();
+      let spellingWord = cardsData[currentActiveCard].word;
+      speakWord(spellingWord);
+    });
+  });
+}
+
+speak();
+
+if (showBtn)
   showBtn.addEventListener('click', () => addContainer.classList.add('show'));
-  // Hide add container
+if (hideBtn)
   hideBtn.addEventListener('click', () =>
     addContainer.classList.remove('show'),
   );
 
-  // Add new card
+if (addCardBtn)
   addCardBtn.addEventListener('click', () => {
-    const question = questionEl.value;
-    const answer = answerEl.value;
-    if (question.trim() && answer.trim()) {
-      const newCard = { question, answer };
-      createCard(newCard);
-      questionEl.value = '';
-      answerEl.value = '';
+    const newWord = newWordEl.value;
+    if (newWord.trim()) {
+      writeNewWord(newWord);
+      newWordEl.value = '';
       addContainer.classList.remove('show');
-      cardsData.push(newCard);
-      setCardsData(cardsData);
     }
   });
-}
+
+if (spellBtn)
+  spellBtn.addEventListener('click', () => sayContainer.classList.add('show'));
+
+if (hideSpellBtn)
+  hideSpellBtn.addEventListener('click', () =>
+    sayContainer.classList.remove('show'),
+  );
+
+if (checkWordBtn)
+  checkWordBtn.addEventListener('click', () => {
+    const wordToCheck = checkWordEl.value;
+    if (wordToCheck.trim()) {
+      if (wordToCheck === cardsData[currentActiveCard].word) {
+        currentActiveCard++;
+        updateCurrentText();
+        showAlert('success', 'Correct!!');
+        speakWord('correct');
+        setTimeout(() => {
+          checkWordEl.value = '';
+          sayContainer.classList.remove('show');
+        }, 1500);
+      } else {
+        showAlert('error', 'Incorrect, please try again');
+        speakWord('please try again');
+        setTimeout(() => {
+          checkWordEl.value = '';
+        }, 1500);
+      }
+    }
+  });

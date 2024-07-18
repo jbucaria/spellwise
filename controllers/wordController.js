@@ -1,11 +1,6 @@
-const { writeNewWord } = require('../utils/merrianWebsterApi');
 const WordInput = require('../models/wordsModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
-
-exports.addWord = catchAsync(async (req, res, next) => {
-  await writeNewWord(req, res);
-});
 
 exports.getAllWords = catchAsync(async (req, res, next) => {
   const words = await WordInput.find();
@@ -36,6 +31,20 @@ exports.getWord = catchAsync(async (req, res, next) => {
 });
 
 exports.createWord = catchAsync(async (req, res, next) => {
+  const { word } = req.body;
+
+  // Check if the word already exists
+  const existingWord = await WordInput.findOne({ word });
+
+  if (existingWord) {
+    // Return a response indicating the word is a duplicate
+    return res.status(400).json({
+      status: 'fail',
+      message: 'Word already exists',
+    });
+  }
+
+  // Create the new word
   const newWord = await WordInput.create(req.body);
 
   res.status(201).json({

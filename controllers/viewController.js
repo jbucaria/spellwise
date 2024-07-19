@@ -23,7 +23,10 @@ exports.addWord = (req, res) => {
   res.status(200).render('add-word');
 };
 exports.account = (req, res) => {
-  res.status(200).render('account');
+  res.status(200).render('account', {
+    title: 'Your Account',
+    user: res.locals.user,
+  });
 };
 
 exports.submitWord = (req, res) => {

@@ -34,6 +34,7 @@ const hideSpellBtn = document.getElementById('hide-spell');
 const checkWordEl = document.getElementById('checkword');
 const checkWordBtn = document.getElementById('check-word');
 
+//Sign Up
 if (signUpForm)
   signUpForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -44,13 +45,7 @@ if (signUpForm)
     signUp(name, email, password, passwordConfirm);
   });
 
-if (clearBtn)
-  clearBtn.addEventListener('click', () => {
-    let word = cardsData[currentActiveCard]._id;
-    deleteWord(word);
-  });
-
-// Login Form
+//Login
 if (loginForm)
   loginForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -89,8 +84,8 @@ if (userPasswordForm)
   });
 
 //Main
-// Next button
-let currentActiveCard = 0; // Global variable
+
+let currentActiveCard = 0;
 
 function updateCurrentText() {
   const currentEl = document.getElementById('current');
@@ -118,7 +113,6 @@ if (cardsContainer) {
   updateCurrentText();
 }
 
-// Prev button
 if (prevBtn)
   prevBtn.addEventListener('click', () => {
     cardsEl[currentActiveCard].className = 'card right';
@@ -190,4 +184,10 @@ if (checkWordBtn)
         }, 1500);
       }
     }
+  });
+
+if (clearBtn)
+  clearBtn.addEventListener('click', () => {
+    let word = cardsData[currentActiveCard]._id;
+    deleteWord(word);
   });

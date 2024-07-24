@@ -19,9 +19,6 @@ exports.getLogin = (req, res) => {
   });
 };
 
-exports.addWord = (req, res) => {
-  res.status(200).render('add-word');
-};
 exports.account = (req, res) => {
   res.status(200).render('account', {
     title: 'Your Account',
@@ -29,19 +26,24 @@ exports.account = (req, res) => {
   });
 };
 
-exports.submitWord = (req, res) => {
-  res.status(200).render('submit');
-};
 exports.home = (req, res) => {
   res.status(200).render('home');
 };
+
 exports.signUp = (req, res) => {
   res.status(200).render('signUp', {
     title: 'Create account',
   });
 };
-exports.menu = (req, res) => {
-  res.status(200).render('menu', {
-    title: 'Create account',
+
+exports.forgotPassword = (req, res) => {
+  res.status(200).render('forgotPassword', {
+    title: 'Forgot Password',
+  });
+};
+
+exports.resetPassword = (req, res) => {
+  res.status(200).render('resetPassword', {
+    title: 'Reset Password',
   });
 };

@@ -8,10 +8,12 @@ const router = express.Router();
 
 router.get('/', viewController.home);
 router.get('/login', viewController.getLogin);
+router.get('/signup', viewController.signUp);
+router.get('/forgotPassword', viewController.forgotPassword);
+
+router.get('/resetPassword', viewController.resetPassword);
+
 router.get('/main', authController.isLoggedIn, viewController.main);
 router.get('/account', authController.isLoggedIn, viewController.account);
-router.get('/signup', viewController.signUp);
-router.get('/submit', authController.isLoggedIn, viewController.submitWord);
-router.get('/menu', authController.isLoggedIn, viewController.menu);
 
 module.exports = router;

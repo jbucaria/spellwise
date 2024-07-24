@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import '@babel/polyfill';
-import { login, logout } from './login';
+import { login, logout, forgotPassword } from './login';
 import { updateSettings } from './updateSettings';
 import { createCards, cardsEl, speakWord, attachButtonListeners } from './main';
 import { writeNewWord } from './createNewWord';
@@ -16,7 +16,9 @@ const signUpForm = document.querySelector('.signup-form');
 const logOutBtn = document.querySelector('.nav__el--logout');
 const userDataForm = document.querySelector('.form-user-data');
 const userPasswordForm = document.querySelector('.form-user-password');
-
+const forgotPasswordBtn = document.getElementById('forgot-password');
+const requestBtn = document.getElementById('request-button');
+const form = document.querySelector('.reset-form .form--login');
 //Cards
 
 const prevBtn = document.getElementById('prev');
@@ -59,6 +61,36 @@ if (logOutBtn) logOutBtn.addEventListener('click', logout);
 if (userDataForm)
   userDataForm.addEventListener('submit', e => {
     e.preventDefault();
+    const form = new FormData();
+    form.append('name', document.getElementById('name').value);
+    form.append('email', document.getElementById('email').value);
+    form.append('photo', document.getElementById('photo').files[0]);
+
+    updateSettings(form, 'data');
+  });
+
+if (userPasswordForm)
+  userPasswordForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    document.querySelector('.btn--save-password').textContent = 'Updating...';
+
+    const passwordCurrent = document.getElementById('password-current').value;
+    const password = document.getElementById('password').value;
+    const passwordConfirm = document.getElementById('password-confirm').value;
+    await updateSettings(
+      { passwordCurrent, password, passwordConfirm },
+      'password',
+    );
+
+    document.querySelector('.btn--save-password').textContent = 'Save password';
+    document.getElementById('password-current').value = '';
+    document.getElementById('password').value = '';
+    document.getElementById('password-confirm').value = '';
+  });
+
+if (userDataForm)
+  userDataForm.addEventListener('submit', e => {
+    e.preventDefault();
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     updateSettings({ name, email }, 'data');
@@ -81,6 +113,32 @@ if (userPasswordForm)
     document.getElementById('password-current').value = '';
     document.getElementById('password').value = '';
     document.getElementById('password-confirm').value = '';
+  });
+
+if (forgotPasswordBtn) {
+  forgotPasswordBtn.addEventListener('click', () => {
+    location.assign('/forgotPassword');
+  });
+}
+
+if (form) {
+  form.addEventListener('submit', async e => {
+    e.preventDefault(); // Prevent the default form submission
+    const password = document.getElementById('password').value;
+    const passwordConfirm = document.getElementById('passwordConfirm').value;
+
+    if (password !== passwordConfirm) {
+      showAlert('error', 'Passwords do not match!');
+      return;
+    }
+    resetPassword(password, passWordConfirm);
+  });
+}
+
+if (requestBtn)
+  requestBtn.addEventListener('click', () => {
+    const email = document.getElementById('email').value;
+    forgotPassword(email);
   });
 
 //Main

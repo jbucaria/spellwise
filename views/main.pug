@@ -2,58 +2,58 @@ extends base
 
 
 block content
+  .specific-page
+    .button-container
+      button#clear.clear.btn
+        i.fas.fa-trash
+        | Delete Word
 
-  .button-container
-    button#clear.clear.btn
-      i.fas.fa-trash
-      | Delete Word
+      button#spell.btnn.btn-small
+        i.fas.fa-keyboard
+        | Spell Word
 
-    button#spell.btnn.btn-small
-      i.fas.fa-keyboard
-      | Spell Word
+      button#show.btnn.btn-small
+        i.fas.fa-plus
+        | Add Word
 
-    button#show.btnn.btn-small
-      i.fas.fa-plus
-      | Add Word
+    // Inject cardsData for use in main.js
+    script.
+      window.cardsData = !{JSON.stringify(cardsData)}
+      window.updateCurrent = 0
 
-  // Inject cardsData for use in main.js
-  script.
-    window.cardsData = !{JSON.stringify(cardsData)}
-    window.updateCurrent = 0
+    #cards-container.cards
 
-  #cards-container.cards
+    .navigation
+      button#prev.nav-button
+        i.fas.fa-arrow-left
+      p#current
+      button#next.nav-button
+        i.fas.fa-arrow-right
 
-  .navigation
-    button#prev.nav-button
-      i.fas.fa-arrow-left
-    p#current
-    button#next.nav-button
-      i.fas.fa-arrow-right
+    #add-container.add-container
+      h1
+        |
+        button#hide.btnn.btn-small.btn-ghost
+          i.fas.fa-times
 
-  #add-container.add-container
-    h1
-      |
-      button#hide.btnn.btn-small.btn-ghost
-        i.fas.fa-times
+      .form-group
+        label(for='newword') New Spelling Word
+        textarea#newword(placeholder='Enter word...')
 
-    .form-group
-      label(for='newword') New Spelling Word
-      textarea#newword(placeholder='Enter word...')
+      button#add-card.btnn.btn-small
+        i.fas.fa-plus
+        | Add Word
 
-    button#add-card.btnn.btn-small
-      i.fas.fa-plus
-      | Add Word
+    #say-container.say-container
+      h1
+        |
+        button#hide-spell.btnn.btn-small.btn-ghost
+          i.fas.fa-times
 
-  #say-container.say-container
-    h1
-      |
-      button#hide-spell.btnn.btn-small.btn-ghost
-        i.fas.fa-times
+      .form-group
+        label(for='newword') Check Word
+        textarea#checkword(placeholder='Enter word...')
 
-    .form-group
-      label(for='newword') Check Word
-      textarea#checkword(placeholder='Enter word...')
-
-    button#check-word.btnn.btn-small
-      i.fas.fa-plus
-      | Check Word
+      button#check-word.btnn.btn-small
+        i.fas.fa-plus
+        | Check Word

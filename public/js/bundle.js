@@ -49501,7 +49501,7 @@ if (form) {
             (0, _alerts.showAlert)('error', 'Passwords do not match!');
             return _context3.abrupt("return");
           case 6:
-            resetPassword(password, passWordConfirm);
+            resetPassword(password, passwordConfirm);
           case 7:
           case "end":
             return _context3.stop();
@@ -49629,7 +49629,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51082" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61882" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

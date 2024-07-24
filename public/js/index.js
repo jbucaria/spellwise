@@ -131,7 +131,7 @@ if (form) {
       showAlert('error', 'Passwords do not match!');
       return;
     }
-    resetPassword(password, passWordConfirm);
+    resetPassword(password, passwordConfirm);
   });
 }
 

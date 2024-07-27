@@ -45,6 +45,7 @@ if (signUpForm)
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const passwordConfirm = document.getElementById('confirm-password').value;
+
     signUp(name, email, password, passwordConfirm);
   });
 

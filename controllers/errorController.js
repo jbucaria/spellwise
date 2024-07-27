@@ -8,7 +8,6 @@ const handleCastErrorDB = err => {
 
 const handleDuplicateFieldsDB = err => {
   const { keyValue } = err;
-  console.log(keyValue);
   const message = `Duplicate: ${Object.keys(keyValue)} - ${Object.values(keyValue)}.`;
 
   // Assuming AppError is defined and used for custom error handling
@@ -18,8 +17,7 @@ const handleDuplicateFieldsDB = err => {
 const handleValidationErrorDB = err => {
   const errors = Object.values(err.errors).map(el => el.message);
 
-  console.log(errors);
-  const message = `Invalid input data. ${errors.join('. ')}`;
+  const message = `${errors.join('. ')}`;
   return new AppError(message, 400);
 };
 
@@ -56,7 +54,7 @@ const sendErrorProd = (err, req, res) => {
     }
   }
   //Programming or other unknow error: don't leak details to client
-  console.log('ERROR 💣', err);
+  // console.log('ERROR 💣', err);
   // Send generic message
   return res.status(err.statusCode).render('error', {
     title: 'Something went wrong!',
@@ -65,6 +63,7 @@ const sendErrorProd = (err, req, res) => {
 };
 
 module.exports = (err, req, res, next) => {
+  console.log(err.stack);
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
   if (process.env.NODE_ENV === 'development') {
@@ -72,11 +71,11 @@ module.exports = (err, req, res, next) => {
   } else if (process.env.NODE_ENV === 'production') {
     let error = { ...err };
 
-    if (err.name === 'CastError') error = handleCastErrorDB(error);
-    if (err.code === 11000) error = handleDuplicateFieldsDB(error);
+    if (error.name === 'CastError') error = handleCastErrorDB(error);
+    if (error.code === 11000) error = handleDuplicateFieldsDB(error);
     if (err.name === 'ValidationError') error = handleValidationErrorDB(error);
     if (error.name === 'JsonWebTokenError') error = handleJWTError();
     if (error.name === 'TokenExpiredError') error = handleExpiredToken();
-    sendErrorProd(err, req, res);
+    sendErrorProd(error, req, res);
   }
 };

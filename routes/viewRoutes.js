@@ -11,7 +11,7 @@ router.get('/login', viewController.getLogin);
 router.get('/signup', viewController.signUp);
 router.get('/forgotPassword', viewController.forgotPassword);
 
-router.get('/resetPassword', viewController.resetPassword);
+router.get('/resetPassword/:token', viewController.resetPassword);
 
 router.get('/main', authController.isLoggedIn, viewController.main);
 router.get('/account', authController.isLoggedIn, viewController.account);

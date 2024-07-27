@@ -1,13 +1,14 @@
 /* eslint-disable */
 
 import '@babel/polyfill';
-import { login, logout, forgotPassword } from './login';
+import { login, logout } from './login';
 import { updateSettings } from './updateSettings';
 import { createCards, cardsEl, speakWord, attachButtonListeners } from './main';
 import { writeNewWord } from './createNewWord';
 import { deleteWord } from './deleteWord';
 import { showAlert } from './alerts';
 import { signUp } from './signUp';
+import { resetPassword, forgotPassword, getTokenFromUrl } from './passWord';
 
 // DOM ELEMENTS
 // Login/Logout
@@ -131,7 +132,8 @@ if (form) {
       showAlert('error', 'Passwords do not match!');
       return;
     }
-    resetPassword(password, passwordConfirm);
+    let token = getTokenFromUrl();
+    resetPassword(password, passwordConfirm, token);
   });
 }
 

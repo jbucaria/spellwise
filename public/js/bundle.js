@@ -48875,15 +48875,32 @@ module.exports = exports.default;
 module.exports.default = exports.default;
 },{"./lib/toDate":"../../node_modules/validator/lib/toDate.js","./lib/toFloat":"../../node_modules/validator/lib/toFloat.js","./lib/toInt":"../../node_modules/validator/lib/toInt.js","./lib/toBoolean":"../../node_modules/validator/lib/toBoolean.js","./lib/equals":"../../node_modules/validator/lib/equals.js","./lib/contains":"../../node_modules/validator/lib/contains.js","./lib/matches":"../../node_modules/validator/lib/matches.js","./lib/isEmail":"../../node_modules/validator/lib/isEmail.js","./lib/isURL":"../../node_modules/validator/lib/isURL.js","./lib/isMACAddress":"../../node_modules/validator/lib/isMACAddress.js","./lib/isIP":"../../node_modules/validator/lib/isIP.js","./lib/isIPRange":"../../node_modules/validator/lib/isIPRange.js","./lib/isFQDN":"../../node_modules/validator/lib/isFQDN.js","./lib/isDate":"../../node_modules/validator/lib/isDate.js","./lib/isTime":"../../node_modules/validator/lib/isTime.js","./lib/isBoolean":"../../node_modules/validator/lib/isBoolean.js","./lib/isLocale":"../../node_modules/validator/lib/isLocale.js","./lib/isAbaRouting":"../../node_modules/validator/lib/isAbaRouting.js","./lib/isAlpha":"../../node_modules/validator/lib/isAlpha.js","./lib/isAlphanumeric":"../../node_modules/validator/lib/isAlphanumeric.js","./lib/isNumeric":"../../node_modules/validator/lib/isNumeric.js","./lib/isPassportNumber":"../../node_modules/validator/lib/isPassportNumber.js","./lib/isPort":"../../node_modules/validator/lib/isPort.js","./lib/isLowercase":"../../node_modules/validator/lib/isLowercase.js","./lib/isUppercase":"../../node_modules/validator/lib/isUppercase.js","./lib/isIMEI":"../../node_modules/validator/lib/isIMEI.js","./lib/isAscii":"../../node_modules/validator/lib/isAscii.js","./lib/isFullWidth":"../../node_modules/validator/lib/isFullWidth.js","./lib/isHalfWidth":"../../node_modules/validator/lib/isHalfWidth.js","./lib/isVariableWidth":"../../node_modules/validator/lib/isVariableWidth.js","./lib/isMultibyte":"../../node_modules/validator/lib/isMultibyte.js","./lib/isSemVer":"../../node_modules/validator/lib/isSemVer.js","./lib/isSurrogatePair":"../../node_modules/validator/lib/isSurrogatePair.js","./lib/isInt":"../../node_modules/validator/lib/isInt.js","./lib/isFloat":"../../node_modules/validator/lib/isFloat.js","./lib/isDecimal":"../../node_modules/validator/lib/isDecimal.js","./lib/isHexadecimal":"../../node_modules/validator/lib/isHexadecimal.js","./lib/isOctal":"../../node_modules/validator/lib/isOctal.js","./lib/isDivisibleBy":"../../node_modules/validator/lib/isDivisibleBy.js","./lib/isHexColor":"../../node_modules/validator/lib/isHexColor.js","./lib/isRgbColor":"../../node_modules/validator/lib/isRgbColor.js","./lib/isHSL":"../../node_modules/validator/lib/isHSL.js","./lib/isISRC":"../../node_modules/validator/lib/isISRC.js","./lib/isIBAN":"../../node_modules/validator/lib/isIBAN.js","./lib/isBIC":"../../node_modules/validator/lib/isBIC.js","./lib/isMD5":"../../node_modules/validator/lib/isMD5.js","./lib/isHash":"../../node_modules/validator/lib/isHash.js","./lib/isJWT":"../../node_modules/validator/lib/isJWT.js","./lib/isJSON":"../../node_modules/validator/lib/isJSON.js","./lib/isEmpty":"../../node_modules/validator/lib/isEmpty.js","./lib/isLength":"../../node_modules/validator/lib/isLength.js","./lib/isByteLength":"../../node_modules/validator/lib/isByteLength.js","./lib/isUUID":"../../node_modules/validator/lib/isUUID.js","./lib/isMongoId":"../../node_modules/validator/lib/isMongoId.js","./lib/isAfter":"../../node_modules/validator/lib/isAfter.js","./lib/isBefore":"../../node_modules/validator/lib/isBefore.js","./lib/isIn":"../../node_modules/validator/lib/isIn.js","./lib/isLuhnNumber":"../../node_modules/validator/lib/isLuhnNumber.js","./lib/isCreditCard":"../../node_modules/validator/lib/isCreditCard.js","./lib/isIdentityCard":"../../node_modules/validator/lib/isIdentityCard.js","./lib/isEAN":"../../node_modules/validator/lib/isEAN.js","./lib/isISIN":"../../node_modules/validator/lib/isISIN.js","./lib/isISBN":"../../node_modules/validator/lib/isISBN.js","./lib/isISSN":"../../node_modules/validator/lib/isISSN.js","./lib/isTaxID":"../../node_modules/validator/lib/isTaxID.js","./lib/isMobilePhone":"../../node_modules/validator/lib/isMobilePhone.js","./lib/isEthereumAddress":"../../node_modules/validator/lib/isEthereumAddress.js","./lib/isCurrency":"../../node_modules/validator/lib/isCurrency.js","./lib/isBtcAddress":"../../node_modules/validator/lib/isBtcAddress.js","./lib/isISO6346":"../../node_modules/validator/lib/isISO6346.js","./lib/isISO6391":"../../node_modules/validator/lib/isISO6391.js","./lib/isISO8601":"../../node_modules/validator/lib/isISO8601.js","./lib/isRFC3339":"../../node_modules/validator/lib/isRFC3339.js","./lib/isISO31661Alpha2":"../../node_modules/validator/lib/isISO31661Alpha2.js","./lib/isISO31661Alpha3":"../../node_modules/validator/lib/isISO31661Alpha3.js","./lib/isISO4217":"../../node_modules/validator/lib/isISO4217.js","./lib/isBase32":"../../node_modules/validator/lib/isBase32.js","./lib/isBase58":"../../node_modules/validator/lib/isBase58.js","./lib/isBase64":"../../node_modules/validator/lib/isBase64.js","./lib/isDataURI":"../../node_modules/validator/lib/isDataURI.js","./lib/isMagnetURI":"../../node_modules/validator/lib/isMagnetURI.js","./lib/isMailtoURI":"../../node_modules/validator/lib/isMailtoURI.js","./lib/isMimeType":"../../node_modules/validator/lib/isMimeType.js","./lib/isLatLong":"../../node_modules/validator/lib/isLatLong.js","./lib/isPostalCode":"../../node_modules/validator/lib/isPostalCode.js","./lib/ltrim":"../../node_modules/validator/lib/ltrim.js","./lib/rtrim":"../../node_modules/validator/lib/rtrim.js","./lib/trim":"../../node_modules/validator/lib/trim.js","./lib/escape":"../../node_modules/validator/lib/escape.js","./lib/unescape":"../../node_modules/validator/lib/unescape.js","./lib/stripLow":"../../node_modules/validator/lib/stripLow.js","./lib/whitelist":"../../node_modules/validator/lib/whitelist.js","./lib/blacklist":"../../node_modules/validator/lib/blacklist.js","./lib/isWhitelisted":"../../node_modules/validator/lib/isWhitelisted.js","./lib/normalizeEmail":"../../node_modules/validator/lib/normalizeEmail.js","./lib/isSlug":"../../node_modules/validator/lib/isSlug.js","./lib/isLicensePlate":"../../node_modules/validator/lib/isLicensePlate.js","./lib/isStrongPassword":"../../node_modules/validator/lib/isStrongPassword.js","./lib/isVAT":"../../node_modules/validator/lib/isVAT.js"}],"../../models/wordsModel.js":[function(require,module,exports) {
 var mongoose = require('mongoose');
-var validator = require('validator');
+var _validator = require('validator');
+// const User = require('./userModel');
+
 var wordSchema = new mongoose.Schema({
+  userId: [{
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  }],
+  listName: {
+    type: String,
+    required: [true, 'Must provide a list name']
+  },
   word: {
     type: String,
-    requried: [true, 'Must provide a word'],
-    validate: [validator.isAlpha, 'Word must only contain letters']
+    required: [true, 'Must provide a word'],
+    validate: {
+      validator: function validator(value) {
+        return _validator.isAlpha(value, 'en-US', {
+          ignore: ' '
+        });
+      },
+      message: 'Word must only contain letters'
+    }
   },
   definition: {
-    type: [String],
+    type: String,
     required: [true, 'Must provide a definition']
   },
   audio: {
@@ -48893,8 +48910,17 @@ var wordSchema = new mongoose.Schema({
     type: String
   }
 });
-var WordInput = mongoose.model('words', wordSchema);
-module.exports = WordInput;
+
+//Populate User object
+wordSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'userId',
+    select: 'name email'
+  });
+  next();
+});
+var Word = mongoose.model('Word', wordSchema);
+module.exports = Word;
 },{"mongoose":"../../node_modules/mongoose/dist/browser.umd.js","validator":"../../node_modules/validator/index.js"}],"main.js":[function(require,module,exports) {
 "use strict";
 
@@ -48972,8 +48998,8 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 var writeNewWord = exports.writeNewWord = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(newWord) {
-    var _firstEntry$phonetics, _firstEntry$phonetics2, response, data, firstEntry, wordData, saveResponse;
+  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(newWord, userId) {
+    var _firstEntry$phonetics, _firstEntry$phonetics2, response, data, firstEntry, wordData, res;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
@@ -48985,6 +49011,7 @@ var writeNewWord = exports.writeNewWord = /*#__PURE__*/function () {
           data = response.data;
           firstEntry = data[0]; // Extract required fields
           wordData = {
+            listName: 'list',
             word: firstEntry.word,
             phonetic: ((_firstEntry$phonetics = firstEntry.phonetics[0]) === null || _firstEntry$phonetics === void 0 ? void 0 : _firstEntry$phonetics.text) || '',
             definition: firstEntry.meanings[0].definitions[0].definition,
@@ -48992,33 +49019,36 @@ var writeNewWord = exports.writeNewWord = /*#__PURE__*/function () {
             audio: ((_firstEntry$phonetics2 = firstEntry.phonetics.find(function (p) {
               return p.audio;
             })) === null || _firstEntry$phonetics2 === void 0 ? void 0 : _firstEntry$phonetics2.audio) || '' // Get audio if available
-          }; // Send a POST request to save the word in your database
-          _context.next = 9;
-          return _axios.default.post('http://127.0.0.1:8000/api/v1/words', wordData);
-        case 9:
-          saveResponse = _context.sent;
+          };
+          console.log(wordData);
+
+          // Send a POST request to save the word in your database
+          _context.next = 10;
+          return _axios.default.post('http://127.0.0.1:8000/api/v1/words/', wordData);
+        case 10:
+          res = _context.sent;
           if (res.data.status === 'success') {
             (0, _alerts.showAlert)('success', 'Word saved successfully');
             setTimeout(function () {
               window.location.reload();
             }, 2000);
           }
-          _context.next = 17;
+          _context.next = 18;
           break;
-        case 13:
-          _context.prev = 13;
+        case 14:
+          _context.prev = 14;
           _context.t0 = _context["catch"](0);
-          (0, _alerts.showAlert)('error', 'Word already exists');
+          (0, _alerts.showAlert)('error', 'Something went wrong');
           setTimeout(function () {
             window.location.reload();
           }, 2000);
-        case 17:
+        case 18:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 13]]);
+    }, _callee, null, [[0, 14]]);
   }));
-  return function writeNewWord(_x) {
+  return function writeNewWord(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
@@ -49652,7 +49682,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55789" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53477" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

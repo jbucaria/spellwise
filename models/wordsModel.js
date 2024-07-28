@@ -1,14 +1,30 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+// const User = require('./userModel');
 
 const wordSchema = new mongoose.Schema({
+  userId: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+    },
+  ],
+  listName: {
+    type: String,
+    required: [true, 'Must provide a list name'],
+  },
   word: {
     type: String,
-    requried: [true, 'Must provide a word'],
-    validate: [validator.isAlpha, 'Word must only contain letters'],
+    required: [true, 'Must provide a word'],
+    validate: {
+      validator: function (value) {
+        return validator.isAlpha(value, 'en-US', { ignore: ' ' });
+      },
+      message: 'Word must only contain letters',
+    },
   },
   definition: {
-    type: [String],
+    type: String,
     required: [true, 'Must provide a definition'],
   },
   audio: {
@@ -19,6 +35,15 @@ const wordSchema = new mongoose.Schema({
   },
 });
 
-const WordInput = mongoose.model('words', wordSchema);
+//Populate User object
+wordSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'userId',
+    select: 'name email',
+  });
+  next();
+});
 
-module.exports = WordInput;
+const Word = mongoose.model('Word', wordSchema);
+
+module.exports = Word;

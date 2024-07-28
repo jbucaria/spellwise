@@ -1,9 +1,16 @@
 const Word = require('../models/wordsModel');
 const catchAsync = require('../utils/catchAsync');
+const jwt = require('jsonwebtoken');
+const { promisify } = require('util');
 
 exports.main = catchAsync(async (req, res) => {
   // 1) get words from collection
-  const words = await Word.find();
+  const decoded = await promisify(jwt.verify)(
+    req.cookies.jwt,
+    process.env.JWT_SECRET,
+  );
+  const userId = decoded.id;
+  const words = await Word.find({ userId });
   // 2) Build Template
 
   // 3) Render template

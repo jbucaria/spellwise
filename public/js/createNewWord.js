@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { showAlert } from './alerts';
 
-export const writeNewWord = async newWord => {
+export const writeNewWord = async (newWord, userId) => {
   try {
     // Fetch data from the dictionary API
     const response = await axios.get(
@@ -12,17 +12,21 @@ export const writeNewWord = async newWord => {
 
     // Extract required fields
     const wordData = {
+      listName: 'list',
       word: firstEntry.word,
       phonetic: firstEntry.phonetics[0]?.text || '',
       definition: firstEntry.meanings[0].definitions[0].definition, // Get the first definition
       audio: firstEntry.phonetics.find(p => p.audio)?.audio || '', // Get audio if available
     };
 
+    console.log(wordData);
+
     // Send a POST request to save the word in your database
-    const saveResponse = await axios.post(
-      'http://127.0.0.1:8000/api/v1/words',
+    const res = await axios.post(
+      'http://127.0.0.1:8000/api/v1/words/',
       wordData,
     );
+
     if (res.data.status === 'success') {
       showAlert('success', 'Word saved successfully');
       setTimeout(() => {
@@ -30,7 +34,7 @@ export const writeNewWord = async newWord => {
       }, 2000);
     }
   } catch (err) {
-    showAlert('error', 'Word already exists');
+    showAlert('error', 'Something went wrong');
     setTimeout(() => {
       window.location.reload();
     }, 2000);

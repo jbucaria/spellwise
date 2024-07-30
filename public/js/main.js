@@ -38,11 +38,8 @@ function createCard(data, index) {
   <div class="inner-card-back">
     <p>${data.word}</p>
   </div>
-</div>
+</div>`;
 
-
-
-  `;
   // Show number of cards
   updateCurrentText();
 

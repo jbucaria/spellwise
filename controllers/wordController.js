@@ -40,19 +40,18 @@ exports.createWord = catchAsync(async (req, res, next) => {
   );
   const id = decoded.id;
 
-  // const { word } = req.body;
+  const { word } = req.body;
 
-  // const existingWord = await Word.findOne({ word });
+  const existingWord = await Word.findOne({ word });
 
-  // if (existingWord) {
-  //   return res.status(400).json({
-  //     status: 'fail',
-  //     message: 'Word already exists',
-  //   });
-  // }
+  if (existingWord) {
+    return res.status(400).json({
+      status: 'error',
+      message: 'Word Already Exists',
+    });
+  }
   req.body.userId = id;
-  // Create the new word
-  console.log(req.body);
+
   const newWord = await Word.create(req.body);
 
   res.status(201).json({

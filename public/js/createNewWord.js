@@ -34,7 +34,11 @@ export const writeNewWord = async (newWord, userId) => {
       }, 2000);
     }
   } catch (err) {
-    showAlert('error', 'Something went wrong');
+    if (err.response.data.message) {
+      showAlert('error', err.response.data.message);
+    } else {
+      showAlert('error', 'Something went wrong');
+    }
     setTimeout(() => {
       window.location.reload();
     }, 2000);

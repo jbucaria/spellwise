@@ -48957,7 +48957,8 @@ function createCard(data, index) {
   if (index === 0) {
     card.classList.add('active');
   }
-  card.innerHTML = "\n<div class=\"inner-card\">\n  <div class=\"inner-card-front\">\n    <p>".concat(data.definition, "</p>\n    <button id=\"inner-button\" class=\"btnn btn-small\">\n      <i class=\"fas fa-play\"></i> Say Word \n    </button>\n  </div>\n  <div class=\"inner-card-back\">\n    <p>").concat(data.word, "</p>\n  </div>\n</div>\n\n\n\n  ");
+  card.innerHTML = "\n<div class=\"inner-card\">\n  <div class=\"inner-card-front\">\n    <p>".concat(data.definition, "</p>\n    <button id=\"inner-button\" class=\"btnn btn-small\">\n      <i class=\"fas fa-play\"></i> Say Word \n    </button>\n  </div>\n  <div class=\"inner-card-back\">\n    <p>").concat(data.word, "</p>\n  </div>\n</div>");
+
   // Show number of cards
   updateCurrentText();
   card.addEventListener('click', function () {
@@ -49038,7 +49039,11 @@ var writeNewWord = exports.writeNewWord = /*#__PURE__*/function () {
         case 14:
           _context.prev = 14;
           _context.t0 = _context["catch"](0);
-          (0, _alerts.showAlert)('error', 'Something went wrong');
+          if (_context.t0.response.data.message) {
+            (0, _alerts.showAlert)('error', _context.t0.response.data.message);
+          } else {
+            (0, _alerts.showAlert)('error', 'Something went wrong');
+          }
           setTimeout(function () {
             window.location.reload();
           }, 2000);
@@ -49682,7 +49687,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53477" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64741" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

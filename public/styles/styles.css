@@ -1429,6 +1429,48 @@ h1 button {
   min-width: 500px;
   max-width: 100%;
 }
+.newlist textarea {
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  font-size: 16px;
+  padding: 12px;
+  min-width: 500px;
+  max-width: 100%;
+}
+
+/* Style for the dropdown select element */
+#activelist-dropdown,
+#list-dropdown {
+  width: 200px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa; /* Light grey background */
+  font-size: 16px; /* Adjust font size */
+  font-family: Arial, sans-serif; /* Font family */
+  appearance: none; /* Remove default arrow in some browsers */
+  outline: none; /* Remove outline on focus */
+  transition: border-color 0.3s ease; /* Smooth border color transition */
+}
+
+/* Style for the dropdown options */
+#list-dropdown option {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #fff; /* White background for options */
+}
+
+/* Style for dropdown on hover */
+#list-dropdown:hover {
+  border-color: #007bff; /* Change border color on hover */
+}
+
+/* Style for dropdown when focused */
+#list-dropdown:focus {
+  border-color: #007bff; /* Blue border on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add shadow on focus */
+}
 
 p {
   color: #aaa;

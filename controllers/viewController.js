@@ -10,7 +10,10 @@ exports.main = catchAsync(async (req, res) => {
     process.env.JWT_SECRET,
   );
   const userId = decoded.id;
-  const words = await Word.find({ userId });
+
+  const words = await Word.find({
+    userId,
+  });
   // 2) Build Template
 
   // 3) Render template

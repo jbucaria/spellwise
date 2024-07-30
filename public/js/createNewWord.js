@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { showAlert } from './alerts';
 
-export const writeNewWord = async (newWord, userId) => {
+export const writeNewWord = async (newWord, listName) => {
   try {
     // Fetch data from the dictionary API
     const response = await axios.get(
@@ -12,7 +12,7 @@ export const writeNewWord = async (newWord, userId) => {
 
     // Extract required fields
     const wordData = {
-      listName: 'list',
+      listName,
       word: firstEntry.word,
       phonetic: firstEntry.phonetics[0]?.text || '',
       definition: firstEntry.meanings[0].definitions[0].definition, // Get the first definition
@@ -42,5 +42,29 @@ export const writeNewWord = async (newWord, userId) => {
     setTimeout(() => {
       window.location.reload();
     }, 2000);
+  }
+};
+
+export const sendDataToBackend = async data => {
+  try {
+    const response = await fetch('/api/v1/words/your-endpoint', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ activeList: data }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(errorText);
+    }
+
+    const result = await response.json();
+
+    console.log(result);
+    activeList = result;
+  } catch (error) {
+    console.error('Error sending data:', error);
   }
 };

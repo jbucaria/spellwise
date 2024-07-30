@@ -48990,7 +48990,7 @@ function attachButtonListeners() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.writeNewWord = void 0;
+exports.writeNewWord = exports.sendDataToBackend = void 0;
 var _axios = _interopRequireDefault(require("axios"));
 var _alerts = require("./alerts");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
@@ -48999,7 +48999,7 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
 function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 var writeNewWord = exports.writeNewWord = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(newWord, userId) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(newWord, listName) {
     var _firstEntry$phonetics, _firstEntry$phonetics2, response, data, firstEntry, wordData, res;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
@@ -49012,7 +49012,7 @@ var writeNewWord = exports.writeNewWord = /*#__PURE__*/function () {
           data = response.data;
           firstEntry = data[0]; // Extract required fields
           wordData = {
-            listName: 'list',
+            listName: listName,
             word: firstEntry.word,
             phonetic: ((_firstEntry$phonetics = firstEntry.phonetics[0]) === null || _firstEntry$phonetics === void 0 ? void 0 : _firstEntry$phonetics.text) || '',
             definition: firstEntry.meanings[0].definitions[0].definition,
@@ -49055,6 +49055,57 @@ var writeNewWord = exports.writeNewWord = /*#__PURE__*/function () {
   }));
   return function writeNewWord(_x, _x2) {
     return _ref.apply(this, arguments);
+  };
+}();
+var sendDataToBackend = exports.sendDataToBackend = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(data) {
+    var response, errorText, result;
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          _context2.prev = 0;
+          _context2.next = 3;
+          return fetch('/api/v1/words/your-endpoint', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              activeList: data
+            })
+          });
+        case 3:
+          response = _context2.sent;
+          if (response.ok) {
+            _context2.next = 9;
+            break;
+          }
+          _context2.next = 7;
+          return response.text();
+        case 7:
+          errorText = _context2.sent;
+          throw new Error(errorText);
+        case 9:
+          _context2.next = 11;
+          return response.json();
+        case 11:
+          result = _context2.sent;
+          console.log(result);
+          activeList = result;
+          _context2.next = 19;
+          break;
+        case 16:
+          _context2.prev = 16;
+          _context2.t0 = _context2["catch"](0);
+          console.error('Error sending data:', _context2.t0);
+        case 19:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2, null, [[0, 16]]);
+  }));
+  return function sendDataToBackend(_x3) {
+    return _ref2.apply(this, arguments);
   };
 }();
 },{"axios":"../../node_modules/axios/index.js","./alerts":"alerts.js"}],"deleteWord.js":[function(require,module,exports) {
@@ -49428,6 +49479,8 @@ var cardsContainer = document.getElementById('cards-container');
 var showBtn = document.getElementById('show');
 var hideBtn = document.getElementById('hide');
 var newWordEl = document.getElementById('newword');
+var listDropdown = document.getElementById('list-dropdown');
+var chooseList = document.getElementById('activelist-dropdown');
 var addCardBtn = document.getElementById('add-card');
 var addContainer = document.getElementById('add-container');
 var clearBtn = document.getElementById('clear');
@@ -49623,11 +49676,17 @@ if (showBtn) showBtn.addEventListener('click', function () {
 if (hideBtn) hideBtn.addEventListener('click', function () {
   return addContainer.classList.remove('show');
 });
+if (chooseList) chooseList.addEventListener('change', function () {
+  var activeList = chooseList.value;
+  (0, _createNewWord.sendDataToBackend)(activeList);
+});
 if (addCardBtn) addCardBtn.addEventListener('click', function () {
+  var listName = listDropdown.value;
   var newWord = newWordEl.value;
   if (newWord.trim()) {
-    (0, _createNewWord.writeNewWord)(newWord);
+    (0, _createNewWord.writeNewWord)(newWord, listName);
     newWordEl.value = '';
+    newListEl.value = '';
     addContainer.classList.remove('show');
   }
 });

@@ -33,6 +33,14 @@ exports.getWord = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.activeList = catchAsync(async (req, res, next) => {
+  const { activeList } = req.body;
+  res.json({
+    status: 'success',
+    listName: activeList,
+  });
+});
+
 exports.createWord = catchAsync(async (req, res, next) => {
   const decoded = await promisify(jwt.verify)(
     req.cookies.jwt,

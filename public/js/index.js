@@ -4,7 +4,7 @@ import '@babel/polyfill';
 import { login, logout } from './login';
 import { updateSettings } from './updateSettings';
 import { createCards, cardsEl, speakWord, attachButtonListeners } from './main';
-import { writeNewWord } from './createNewWord';
+import { writeNewWord, sendDataToBackend } from './createNewWord';
 import { deleteWord } from './deleteWord';
 import { showAlert } from './alerts';
 import { signUp } from './signUp';
@@ -28,6 +28,8 @@ const cardsContainer = document.getElementById('cards-container');
 const showBtn = document.getElementById('show');
 const hideBtn = document.getElementById('hide');
 const newWordEl = document.getElementById('newword');
+const listDropdown = document.getElementById('list-dropdown');
+const chooseList = document.getElementById('activelist-dropdown');
 const addCardBtn = document.getElementById('add-card');
 const addContainer = document.getElementById('add-container');
 const clearBtn = document.getElementById('clear');
@@ -206,12 +208,20 @@ if (hideBtn)
     addContainer.classList.remove('show'),
   );
 
+if (chooseList)
+  chooseList.addEventListener('change', () => {
+    const activeList = chooseList.value;
+    sendDataToBackend(activeList);
+  });
+
 if (addCardBtn)
   addCardBtn.addEventListener('click', () => {
+    const listName = listDropdown.value;
     const newWord = newWordEl.value;
     if (newWord.trim()) {
-      writeNewWord(newWord);
+      writeNewWord(newWord, listName);
       newWordEl.value = '';
+      newListEl.value = '';
       addContainer.classList.remove('show');
     }
   });

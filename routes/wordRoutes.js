@@ -4,6 +4,8 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 
+router.post('/your-endpoint', wordController.activeList);
+
 router
   .route('/')
   .get(authController.protect, wordController.getAllWords)

@@ -1415,10 +1415,12 @@ h1 button {
 }
 
 .form-group label {
+  text-align: center;
   display: block;
   margin: 20px 0 10px;
   font-size: 30px;
   color: #ed0505;
+  text-transform: capitalize;
 }
 
 .form-group textarea {

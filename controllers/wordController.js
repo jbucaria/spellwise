@@ -4,6 +4,7 @@ const Word = require('../models/wordsModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const User = require('./../models/userModel');
+const sharedData = require('../public/js/shared');
 
 exports.getAllWords = catchAsync(async (req, res, next) => {
   const words = await Word.find();
@@ -33,13 +34,21 @@ exports.getWord = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.activeList = catchAsync(async (req, res, next) => {
+exports.setActiveList = catchAsync(async (req, res, next) => {
   const { activeList } = req.body;
-  res.json({
+  sharedData.activeList = activeList;
+  res.status(200).json({
     status: 'success',
-    listName: activeList,
+    data: activeList,
   });
 });
+
+exports.getActiveList = (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    data: sharedData.activeList,
+  });
+};
 
 exports.createWord = catchAsync(async (req, res, next) => {
   const decoded = await promisify(jwt.verify)(
@@ -47,10 +56,10 @@ exports.createWord = catchAsync(async (req, res, next) => {
     process.env.JWT_SECRET,
   );
   const id = decoded.id;
-
   const { word } = req.body;
+  const currentActiveList = sharedData.activeList;
 
-  const existingWord = await Word.findOne({ word });
+  const existingWord = await Word.findOne({ word, id, currentActiveList });
 
   if (existingWord) {
     return res.status(400).json({

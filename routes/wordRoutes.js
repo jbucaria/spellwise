@@ -4,7 +4,8 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 
-router.post('/your-endpoint', wordController.activeList);
+router.post('/your-endpoint', wordController.setActiveList);
+router.get('/active-list', wordController.getActiveList);
 
 router
   .route('/')

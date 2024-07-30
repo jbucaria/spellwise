@@ -63,7 +63,6 @@ export const sendDataToBackend = async data => {
     const result = await response.json();
 
     console.log(result);
-    activeList = result;
   } catch (error) {
     console.error('Error sending data:', error);
   }

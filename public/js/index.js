@@ -11,17 +11,17 @@ import { signUp } from './signUp';
 import { resetPassword, forgotPassword, getTokenFromUrl } from './passWord';
 
 // DOM ELEMENTS
-// Login/Logout
+// User Authentication Forms
 const loginForm = document.querySelector('.login-form');
 const signUpForm = document.querySelector('.signup-form');
 const logOutBtn = document.querySelector('.nav__el--logout');
-const userDataForm = document.querySelector('.form-user-data');
-const userPasswordForm = document.querySelector('.form-user-password');
 const forgotPasswordBtn = document.getElementById('forgot-password');
 const requestBtn = document.getElementById('request-button');
-const form = document.querySelector('.reset-form .form--login');
-//Cards
+const resetPasswordForm = document.querySelector('.reset-form .form--login');
+const userDataForm = document.querySelector('.form-user-data');
+const userPasswordForm = document.querySelector('.form-user-password');
 
+// Cards
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
 const cardsContainer = document.getElementById('cards-container');
@@ -39,165 +39,138 @@ const hideSpellBtn = document.getElementById('hide-spell');
 const checkWordEl = document.getElementById('checkword');
 const checkWordBtn = document.getElementById('check-word');
 
-//Sign Up
-if (signUpForm)
-  signUpForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const passwordConfirm = document.getElementById('confirm-password').value;
+// FUNCTIONS
+// Sign Up
+const handleSignUp = e => {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const passwordConfirm = document.getElementById('confirm-password').value;
 
-    signUp(name, email, password, passwordConfirm);
-  });
+  signUp(name, email, password, passwordConfirm);
+};
 
-//Login
-if (loginForm)
-  loginForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    login(email, password);
-  });
+// Login
+const handleLogin = e => {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  login(email, password);
+};
 
-if (logOutBtn) logOutBtn.addEventListener('click', logout);
+// Update User Data
+const handleUpdateUserData = e => {
+  e.preventDefault();
+  const form = new FormData();
+  form.append('name', document.getElementById('name').value);
+  form.append('email', document.getElementById('email').value);
+  form.append('photo', document.getElementById('photo').files[0]);
 
-if (userDataForm)
-  userDataForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const form = new FormData();
-    form.append('name', document.getElementById('name').value);
-    form.append('email', document.getElementById('email').value);
-    form.append('photo', document.getElementById('photo').files[0]);
+  updateSettings(form, 'data');
+};
 
-    updateSettings(form, 'data');
-  });
+// Update User Password
+const handleUpdateUserPassword = async e => {
+  e.preventDefault();
+  document.querySelector('.btn--save-password').textContent = 'Updating...';
 
-if (userPasswordForm)
-  userPasswordForm.addEventListener('submit', async e => {
-    e.preventDefault();
-    document.querySelector('.btn--save-password').textContent = 'Updating...';
+  const passwordCurrent = document.getElementById('password-current').value;
+  const password = document.getElementById('password').value;
+  const passwordConfirm = document.getElementById('password-confirm').value;
 
-    const passwordCurrent = document.getElementById('password-current').value;
-    const password = document.getElementById('password').value;
-    const passwordConfirm = document.getElementById('password-confirm').value;
-    await updateSettings(
-      { passwordCurrent, password, passwordConfirm },
-      'password',
-    );
+  await updateSettings(
+    { passwordCurrent, password, passwordConfirm },
+    'password',
+  );
 
-    document.querySelector('.btn--save-password').textContent = 'Save password';
-    document.getElementById('password-current').value = '';
-    document.getElementById('password').value = '';
-    document.getElementById('password-confirm').value = '';
-  });
+  document.querySelector('.btn--save-password').textContent = 'Save password';
+  document.getElementById('password-current').value = '';
+  document.getElementById('password').value = '';
+  document.getElementById('password-confirm').value = '';
+};
 
-if (userDataForm)
-  userDataForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    updateSettings({ name, email }, 'data');
-  });
+// Forgot Password
+const handleForgotPassword = () => {
+  const email = document.getElementById('email').value;
+  forgotPassword(email);
+};
 
-if (userPasswordForm)
-  userPasswordForm.addEventListener('submit', async e => {
-    e.preventDefault();
-    document.querySelector('.btn--save-password').textContent = 'Updating...';
+// Reset Password
+const handleResetPassword = async e => {
+  e.preventDefault();
+  const password = document.getElementById('password').value;
+  const passwordConfirm = document.getElementById('passwordConfirm').value;
 
-    const passwordCurrent = document.getElementById('password-current').value;
-    const password = document.getElementById('password').value;
-    const passwordConfirm = document.getElementById('password-confirm').value;
-    await updateSettings(
-      { passwordCurrent, password, passwordConfirm },
-      'password',
-    );
+  if (password !== passwordConfirm) {
+    showAlert('error', 'Passwords do not match!');
+    return;
+  }
 
-    document.querySelector('.btn--save-password').textContent = 'Save password';
-    document.getElementById('password-current').value = '';
-    document.getElementById('password').value = '';
-    document.getElementById('password-confirm').value = '';
-  });
+  const token = getTokenFromUrl();
+  await resetPassword(password, passwordConfirm, token);
+};
 
-if (forgotPasswordBtn) {
-  forgotPasswordBtn.addEventListener('click', () => {
-    location.assign('/forgotPassword');
-  });
-}
-
-if (form) {
-  form.addEventListener('submit', async e => {
-    e.preventDefault(); // Prevent the default form submission
-    const password = document.getElementById('password').value;
-    const passwordConfirm = document.getElementById('passwordConfirm').value;
-
-    if (password !== passwordConfirm) {
-      showAlert('error', 'Passwords do not match!');
-      return;
-    }
-    let token = getTokenFromUrl();
-    resetPassword(password, passwordConfirm, token);
-  });
-}
-
-if (requestBtn)
-  requestBtn.addEventListener('click', () => {
-    const email = document.getElementById('email').value;
-    forgotPassword(email);
-  });
-
-//Main
-
+// Cards Navigation
 let currentActiveCard = 0;
 
-function updateCurrentText() {
+const updateCurrentText = () => {
   const currentEl = document.getElementById('current');
   currentEl.innerText = `${currentActiveCard + 1}/${cardsEl.length}`;
-}
+};
+
+// Event Listeners
+if (signUpForm) signUpForm.addEventListener('submit', handleSignUp);
+if (loginForm) loginForm.addEventListener('submit', handleLogin);
+if (logOutBtn) logOutBtn.addEventListener('click', logout);
+if (userDataForm) userDataForm.addEventListener('submit', handleUpdateUserData);
+if (userPasswordForm)
+  userPasswordForm.addEventListener('submit', handleUpdateUserPassword);
+if (forgotPasswordBtn)
+  forgotPasswordBtn.addEventListener('click', () =>
+    location.assign('/forgotPassword'),
+  );
+if (requestBtn) requestBtn.addEventListener('click', handleForgotPassword);
+if (resetPasswordForm)
+  resetPasswordForm.addEventListener('submit', handleResetPassword);
 
 if (cardsContainer) {
   createCards();
-
   attachButtonListeners();
-
-  nextBtn.addEventListener('click', () => {
-    cardsEl[currentActiveCard].className = 'card left';
-
-    currentActiveCard += 1;
-
-    if (currentActiveCard > cardsEl.length - 1) {
-      currentActiveCard = cardsEl.length - 1;
-    }
-
-    cardsEl[currentActiveCard].className = 'card active';
-    updateCurrentText();
-  });
-
   updateCurrentText();
 }
 
-if (prevBtn)
+if (prevBtn) {
   prevBtn.addEventListener('click', () => {
     cardsEl[currentActiveCard].className = 'card right';
     currentActiveCard -= 1;
-    if (currentActiveCard < 0) {
-      currentActiveCard = 0;
-    }
+    if (currentActiveCard < 0) currentActiveCard = 0;
     cardsEl[currentActiveCard].className = 'card active';
     updateCurrentText();
   });
+}
 
-function speak() {
+if (nextBtn) {
+  nextBtn.addEventListener('click', () => {
+    cardsEl[currentActiveCard].className = 'card left';
+    currentActiveCard += 1;
+    if (currentActiveCard > cardsEl.length - 1)
+      currentActiveCard = cardsEl.length - 1;
+    cardsEl[currentActiveCard].className = 'card active';
+    updateCurrentText();
+  });
+}
+
+const speak = () => {
   const buttons = document.querySelectorAll('.inner-card-front button');
-
   buttons.forEach(button => {
     button.addEventListener('click', event => {
       event.stopPropagation();
-      let spellingWord = cardsData[currentActiveCard].word;
+      const spellingWord = cardsData[currentActiveCard].word;
       speakWord(spellingWord);
     });
   });
-}
+};
 
 speak();
 
@@ -208,33 +181,37 @@ if (hideBtn)
     addContainer.classList.remove('show'),
   );
 
-if (chooseList)
+if (chooseList) {
   chooseList.addEventListener('change', () => {
+    const activeListLabel = document.getElementById('activelist-label');
     const activeList = chooseList.value;
+    activeListLabel.textContent = activeList;
+    localStorage.setItem('selectedList', activeList);
     sendDataToBackend(activeList);
+    setTimeout(() => location.reload(), 500);
   });
+}
 
-if (addCardBtn)
+if (addCardBtn) {
   addCardBtn.addEventListener('click', () => {
     const listName = listDropdown.value;
     const newWord = newWordEl.value;
     if (newWord.trim()) {
       writeNewWord(newWord, listName);
       newWordEl.value = '';
-      newListEl.value = '';
       addContainer.classList.remove('show');
     }
   });
+}
 
 if (spellBtn)
   spellBtn.addEventListener('click', () => sayContainer.classList.add('show'));
-
 if (hideSpellBtn)
   hideSpellBtn.addEventListener('click', () =>
     sayContainer.classList.remove('show'),
   );
 
-if (checkWordBtn)
+if (checkWordBtn) {
   checkWordBtn.addEventListener('click', () => {
     const wordToCheck = checkWordEl.value;
     if (wordToCheck.trim()) {
@@ -256,9 +233,11 @@ if (checkWordBtn)
       }
     }
   });
+}
 
-if (clearBtn)
+if (clearBtn) {
   clearBtn.addEventListener('click', () => {
-    let word = cardsData[currentActiveCard]._id;
+    const word = cardsData[currentActiveCard]._id;
     deleteWord(word);
   });
+}

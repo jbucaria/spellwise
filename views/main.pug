@@ -3,8 +3,9 @@ extends base
 block content
   .specific-page
     .form-group
-      label(for="activelist-dropdown") Choose a list:
+      label#activelist-label(for="activelist-dropdown") #{currentActiveList}
       select#activelist-dropdown
+        option(value="easy words") ...
         option(value="easy words") Easy Words
         option(value="hard words") Hard Words
         option(value="need to practice") Need to Practice
@@ -50,8 +51,8 @@ block content
         option(value="easy words") Easy Words
         option(value="hard words") Hard Words
         option(value="need to practice") Need to Practice
-        option(value="need to practice") Custom 1
-        option(value="need to practice") Custom 2
+        option(value="custom1") Custom 1
+        option(value="") Custom 2
 
       
       .form-group

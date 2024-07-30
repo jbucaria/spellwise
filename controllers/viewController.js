@@ -2,24 +2,25 @@ const Word = require('../models/wordsModel');
 const catchAsync = require('../utils/catchAsync');
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
+const sharedData = require('../public/js/shared');
 
 exports.main = catchAsync(async (req, res) => {
-  // 1) get words from collection
   const decoded = await promisify(jwt.verify)(
     req.cookies.jwt,
     process.env.JWT_SECRET,
   );
   const userId = decoded.id;
 
+  const currentActiveList = sharedData.activeList;
+
   const words = await Word.find({
     userId,
+    listName: currentActiveList,
   });
-  // 2) Build Template
 
-  // 3) Render template
   res.status(200).render('main', {
-    title: words,
     cardsData: words,
+    currentActiveList,
   });
 });
 

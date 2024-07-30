@@ -48972,8 +48972,9 @@ function createCard(data, index) {
 }
 function speakWord(word) {
   var utterance = new SpeechSynthesisUtterance(word);
-  utterance.rate = 0.4;
+  utterance.rate = 0.1;
   utterance.lang = 'en-us';
+  utterance.pitch = 1.4;
   speechSynthesis.speak(utterance);
 }
 function attachButtonListeners() {
@@ -49593,7 +49594,11 @@ var handleResetPassword = /*#__PURE__*/function () {
 var currentActiveCard = 0;
 var updateCurrentText = function updateCurrentText() {
   var currentEl = document.getElementById('current');
-  currentEl.innerText = "".concat(currentActiveCard + 1, "/").concat(_main.cardsEl.length);
+  if (_main.cardsEl.length === 0) {
+    currentEl.innerText = "".concat(currentActiveCard + 0, "/").concat(_main.cardsEl.length);
+  } else {
+    currentEl.innerText = "".concat(currentActiveCard + 1, "/").concat(_main.cardsEl.length);
+  }
 };
 
 // Event Listeners
@@ -49684,14 +49689,12 @@ if (checkWordBtn) {
         currentActiveCard++;
         updateCurrentText();
         (0, _alerts.showAlert)('success', 'Correct!!');
-        (0, _main.speakWord)('correct');
         setTimeout(function () {
           checkWordEl.value = '';
           sayContainer.classList.remove('show');
         }, 1500);
       } else {
         (0, _alerts.showAlert)('error', 'Incorrect, please try again');
-        (0, _main.speakWord)('please try again');
         setTimeout(function () {
           checkWordEl.value = '';
         }, 1500);

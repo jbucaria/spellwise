@@ -57,6 +57,18 @@ header.header {
   background-color: rgba(84, 84, 234);
 }
 
+.logo-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-container img {
+  justify-content: center;
+  align-items: center;
+  max-width: 50%;
+  height: auto; /* Ensure the logo scales properly */
+}
 /* body {
   padding-top: 60px; /* Adjust this value based on your header height */
 /* } */
@@ -215,7 +227,7 @@ header.header {
 }
 .buttons-container {
   display: flex;
-  justify-content: center; /* Center the buttons horizontally */
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: 80px;
@@ -1238,12 +1250,9 @@ h1 button {
 }
 
 .button-container {
-  width: 500px;
+  right: 30px;
   display: flex;
   flex-direction: row;
-  align-items: end;
-  justify-content: flex-end;
-  margin: 10px;
   gap: 10px;
 }
 
@@ -1254,12 +1263,6 @@ h1 button {
 
 .button-container button i {
   margin-right: 8px;
-}
-
-.clear {
-  position: absolute;
-  bottom: 130px;
-  left: 30px;
 }
 
 .cards {
@@ -1309,6 +1312,7 @@ h1 button {
   transform: rotateX(180deg);
 }
 
+.inner-card-front-static,
 .inner-card-front,
 .inner-card-back {
   backface-visibility: hidden;
@@ -1344,6 +1348,17 @@ h1 button {
   left: 10px; /* Distance from the left */
 }
 
+.inner-card-front-static::after {
+  position: relative;
+  content: 'Select a list or Add Words to get started';
+  font-family: 'Font Awesome 5 Free', Lato, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  display: block;
+  position: absolute;
+  color: #2e864b;
+}
 .inner-card-front::after {
   content: '\f021  click for spelling';
   font-family: 'Font Awesome 5 Free', Lato, sans-serif;
@@ -1412,6 +1427,10 @@ h1 button {
 
 .add-container h3 {
   margin: 10px 0;
+}
+
+.form-group {
+  margin-bottom: 10px;
 }
 
 .form-group label {

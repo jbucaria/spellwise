@@ -116,7 +116,11 @@ let currentActiveCard = 0;
 
 const updateCurrentText = () => {
   const currentEl = document.getElementById('current');
-  currentEl.innerText = `${currentActiveCard + 1}/${cardsEl.length}`;
+  if (cardsEl.length === 0) {
+    currentEl.innerText = `${currentActiveCard + 0}/${cardsEl.length}`;
+  } else {
+    currentEl.innerText = `${currentActiveCard + 1}/${cardsEl.length}`;
+  }
 };
 
 // Event Listeners
@@ -219,14 +223,12 @@ if (checkWordBtn) {
         currentActiveCard++;
         updateCurrentText();
         showAlert('success', 'Correct!!');
-        speakWord('correct');
         setTimeout(() => {
           checkWordEl.value = '';
           sayContainer.classList.remove('show');
         }, 1500);
       } else {
         showAlert('error', 'Incorrect, please try again');
-        speakWord('please try again');
         setTimeout(() => {
           checkWordEl.value = '';
         }, 1500);

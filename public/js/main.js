@@ -55,8 +55,9 @@ function createCard(data, index) {
 
 export function speakWord(word) {
   const utterance = new SpeechSynthesisUtterance(word);
-  utterance.rate = 0.4;
+  utterance.rate = 0.1;
   utterance.lang = 'en-us';
+  utterance.pitch = 1.4;
   speechSynthesis.speak(utterance);
 }
 

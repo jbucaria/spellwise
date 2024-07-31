@@ -13,7 +13,7 @@ let currentActiveCard = 0;
 
 function updateCurrentText() {
   const currentEl = document.getElementById('current');
-  currentEl.innerText = `${currentActiveCard + 1}/${cardsEl.length}`;
+  currentEl.innerText = `${currentActiveCard}/${cardsEl.length}`;
 }
 
 // Create a single card in DOM

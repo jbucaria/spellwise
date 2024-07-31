@@ -220,13 +220,26 @@ if (checkWordBtn) {
     const wordToCheck = checkWordEl.value;
     if (wordToCheck.trim()) {
       if (wordToCheck === cardsData[currentActiveCard].word) {
-        currentActiveCard++;
-        updateCurrentText();
-        showAlert('success', 'Correct!!');
-        setTimeout(() => {
-          checkWordEl.value = '';
-          sayContainer.classList.remove('show');
-        }, 1500);
+        if (currentActiveCard < cardsData.length - 1) {
+          cardsEl[currentActiveCard].className = 'card left';
+
+          currentActiveCard++;
+          cardsEl[currentActiveCard].className = 'card active';
+
+          updateCurrentText();
+          showAlert('success', 'Correct!!');
+          setTimeout(() => {
+            checkWordEl.value = '';
+            sayContainer.classList.remove('show');
+          }, 1500);
+        } else {
+          // updateCurrentText();
+          showAlert('success', 'Correct!!');
+          setTimeout(() => {
+            checkWordEl.value = '';
+            sayContainer.classList.remove('show');
+          }, 1500);
+        }
       } else {
         showAlert('error', 'Incorrect, please try again');
         setTimeout(() => {

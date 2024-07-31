@@ -32,7 +32,7 @@ const listDropdown = document.getElementById('list-dropdown');
 const chooseList = document.getElementById('activelist-dropdown');
 const addCardBtn = document.getElementById('add-card');
 const addContainer = document.getElementById('add-container');
-const clearBtn = document.getElementById('clear');
+const clearBtn = document.getElementById('delete');
 const spellBtn = document.getElementById('spell');
 const sayContainer = document.getElementById('say-container');
 const hideSpellBtn = document.getElementById('hide-spell');
@@ -237,9 +237,9 @@ if (checkWordBtn) {
   });
 }
 
-if (clearBtn) {
+if (clearBtn)
   clearBtn.addEventListener('click', () => {
-    const word = cardsData[currentActiveCard]._id;
-    deleteWord(word);
+    console.log('Delete button clicked');
+    const wordId = cardsData[currentActiveCard]._id;
+    deleteWord(wordId);
   });
-}

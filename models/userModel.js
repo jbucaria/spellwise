@@ -82,11 +82,11 @@ userSchema.methods.createCollection = async function () {
 
   try {
     await mongoose.connection.createCollection(userCollectionName);
-    console.log(
-      `Created collection ${userCollectionName} for user ${username}`,
-    );
+    // console.log(
+    // `Created collection ${userCollectionName} for user ${username}`,
+    // );
   } catch (error) {
-    console.error(`Failed to create collection for user ${username}:`, error);
+    // console.error(`Failed to create collection for user ${username}:`, error);
     throw error;
   }
 };

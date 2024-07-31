@@ -5,7 +5,7 @@ export const deleteWord = async wordId => {
   try {
     const res = await axios({
       method: 'DELETE',
-      url: `http://127.0.0.1:8000/api/v1/words/${wordId}`,
+      url: `/api/v1/words/${wordId}`,
     });
 
     if (res.data.status === 'success') {

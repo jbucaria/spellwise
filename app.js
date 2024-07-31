@@ -7,8 +7,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-// const favicon = require('serve-favicon');
-
+const compression = require('compression');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const wordRouter = require('./routes/wordRoutes');
@@ -26,14 +25,14 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 //Development logging
-if (process.env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
-  console.log('Running in development mode');
-} else if (process.env.NODE_ENV === 'production') {
-  console.log('running in production mode');
-} else {
-  console.log('Running in unkown mode');
-}
+// if (process.env.NODE_ENV === 'development') {
+//   app.use(morgan('dev'));
+//   console.log('Running in development mode');
+// } else if (process.env.NODE_ENV === 'production') {
+//   console.log('running in production mode');
+// } else {
+//   console.log('Running in unkown mode');
+// }
 
 // Limit requests from same IP to our API
 const limiter = rateLimit({
@@ -66,8 +65,7 @@ app.use(
   }),
 );
 
-//Favicon Settigs
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(compression());
 
 //Body Parser = Parses the JSON payload and makes it available in req.body
 //Cookie Parser = Parses data from cookie (specifically the JWT token)

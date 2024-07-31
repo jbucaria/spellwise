@@ -239,7 +239,6 @@ if (checkWordBtn) {
 
 if (clearBtn)
   clearBtn.addEventListener('click', () => {
-    console.log('Delete button clicked');
     const wordId = cardsData[currentActiveCard]._id;
     deleteWord(wordId);
   });

@@ -19,13 +19,8 @@ export const writeNewWord = async (newWord, listName) => {
       audio: firstEntry.phonetics.find(p => p.audio)?.audio || '', // Get audio if available
     };
 
-    console.log(wordData);
-
     // Send a POST request to save the word in your database
-    const res = await axios.post(
-      'http://127.0.0.1:8000/api/v1/words/',
-      wordData,
-    );
+    const res = await axios.post('/api/v1/words/', wordData);
 
     if (res.data.status === 'success') {
       showAlert('success', 'Word saved successfully');
@@ -61,8 +56,6 @@ export const sendDataToBackend = async data => {
     }
 
     const result = await response.json();
-
-    console.log(result);
   } catch (error) {
     console.error('Error sending data:', error);
   }

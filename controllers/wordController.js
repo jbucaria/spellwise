@@ -36,6 +36,9 @@ exports.getWord = catchAsync(async (req, res, next) => {
 
 exports.setActiveList = catchAsync(async (req, res, next) => {
   const { activeList } = req.body;
+  if (!activeList) {
+    return next(new AppError('No active list provided!', 400));
+  }
   sharedData.activeList = activeList;
   res.status(200).json({
     status: 'success',

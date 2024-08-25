@@ -13,7 +13,7 @@ const globalErrorHandler = require('./controllers/errorController');
 const wordRouter = require('./routes/wordRoutes');
 const userRouter = require('./routes/userRoutes');
 const viewRouter = require('./routes/viewRoutes');
-
+const cors = require('cors');
 const app = express();
 
 // Global MiddleWares
@@ -35,6 +35,8 @@ app.set('views', path.join(__dirname, 'views'));
 // }
 
 // Limit requests from same IP to our API
+app.use(cors());
+
 const limiter = rateLimit({
   max: 100,
   windowMs: 60 * 60 * 1000,

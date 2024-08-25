@@ -20,10 +20,7 @@ export const writeNewWord = async (newWord, listName) => {
     };
 
     // Send a POST request to save the word in your database
-    const res = await axios.post(
-      'http://127.0.0.1:8000/api/v1/words/',
-      wordData,
-    );
+    const res = await axios.post('/api/v1/words/', wordData);
 
     if (res.data.status === 'success') {
       showAlert('success', 'Word saved successfully');
